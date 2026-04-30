@@ -1114,6 +1114,58 @@ body {
 
       <!-- ══ HOME ══ -->
       <div class="screen active" id="screen-home">
+        <!-- ══ SMART PRODUCT FINDER ══ -->
+      <div class="quiz-card" id="quiz-card">
+
+        <!-- progress dots -->
+        <div class="quiz-steps">
+          <div class="quiz-step-dot active" id="qdot-0"></div>
+          <div class="quiz-step-dot" id="qdot-1"></div>
+          <div class="quiz-step-dot" id="qdot-2"></div>
+          <div class="quiz-step-dot" id="qdot-3"></div>
+          <div class="quiz-step-dot" id="qdot-4"></div>
+        </div>
+
+        <!-- Q0: Age -->
+        <div class="quiz-header">
+          <div class="quiz-icon">🔍</div>
+          <div>
+            <div class="quiz-title">Find Your Best Product</div>
+            <div class="quiz-sub">5 quick questions · personalised recommendation</div>
+          </div>
+        </div>
+
+        <div id="quiz-form">
+          <div class="quiz-q" id="quiz-question">How old are you?</div>
+
+          <!-- age input (step 0) -->
+          <div id="quiz-age-wrap">
+            <div class="quiz-age-row">
+              <input class="quiz-age-input" id="quiz-age" type="number" min="18" max="90" placeholder="Enter your age" oninput="quizAgeInput()">
+            </div>
+          </div>
+
+          <!-- option buttons (steps 1–4) -->
+          <div class="quiz-opts" id="quiz-opts" style="display:none"></div>
+
+          <div class="quiz-nav">
+            <button class="quiz-back-btn" id="quiz-back" onclick="quizBack()" style="display:none">← Back</button>
+            <button class="quiz-next-btn" id="quiz-next" onclick="quizNext()">Next →</button>
+          </div>
+        </div>
+
+        <!-- Result -->
+        <div class="quiz-result" id="quiz-result">
+          <div class="quiz-rec-head">
+            <div class="quiz-rec-title">✅ Your Best Matches</div>
+            <div class="quiz-rec-sub">Based on your profile — tap a card to calculate returns</div>
+          </div>
+          <div id="quiz-rec-list"></div>
+          <div class="quiz-restart-btn" onclick="quizRestart()">↺ Start Over</div>
+        </div>
+
+      </div>
+
         <!-- ── HERO ── -->
       <div class="hero-banner">
         <div class="hero-tag"><span class="hero-pulse"></span> Trusted Since 1980</div>
@@ -1295,58 +1347,6 @@ body {
     <div class="screen" id="screen-calculator">
       <button class="back-btn" onclick="navTo('home')">← Back to Home</button>
 
-      <!-- ══ SMART PRODUCT FINDER ══ -->
-<!-- ══ SMART PRODUCT FINDER ══ -->
-      <div class="quiz-card" id="quiz-card">
-
-        <!-- progress dots -->
-        <div class="quiz-steps">
-          <div class="quiz-step-dot active" id="qdot-0"></div>
-          <div class="quiz-step-dot" id="qdot-1"></div>
-          <div class="quiz-step-dot" id="qdot-2"></div>
-          <div class="quiz-step-dot" id="qdot-3"></div>
-          <div class="quiz-step-dot" id="qdot-4"></div>
-        </div>
-
-        <!-- Q0: Age -->
-        <div class="quiz-header">
-          <div class="quiz-icon">🔍</div>
-          <div>
-            <div class="quiz-title">Find Your Best Product</div>
-            <div class="quiz-sub">5 quick questions · personalised recommendation</div>
-          </div>
-        </div>
-
-        <div id="quiz-form">
-          <div class="quiz-q" id="quiz-question">How old are you?</div>
-
-          <!-- age input (step 0) -->
-          <div id="quiz-age-wrap">
-            <div class="quiz-age-row">
-              <input class="quiz-age-input" id="quiz-age" type="number" min="18" max="90" placeholder="Enter your age" oninput="quizAgeInput()">
-            </div>
-          </div>
-
-          <!-- option buttons (steps 1–4) -->
-          <div class="quiz-opts" id="quiz-opts" style="display:none"></div>
-
-          <div class="quiz-nav">
-            <button class="quiz-back-btn" id="quiz-back" onclick="quizBack()" style="display:none">← Back</button>
-            <button class="quiz-next-btn" id="quiz-next" onclick="quizNext()">Next →</button>
-          </div>
-        </div>
-
-        <!-- Result -->
-        <div class="quiz-result" id="quiz-result">
-          <div class="quiz-rec-head">
-            <div class="quiz-rec-title">✅ Your Best Matches</div>
-            <div class="quiz-rec-sub">Based on your profile — tap a card to calculate returns</div>
-          </div>
-          <div id="quiz-rec-list"></div>
-          <div class="quiz-restart-btn" onclick="quizRestart()">↺ Start Over</div>
-        </div>
-
-      </div>
 
       <div class="section-title" style="margin-bottom:16px">Returns Calculator</div>
       <div class="calc-steps">
@@ -1643,13 +1643,13 @@ body {
         <span class="mob-nav-icon">🧮</span>
         <span class="mob-nav-label">Calculate</span>
       </button>
-      <button class="mob-nav-item" id="mnav-learn" onclick="navTo('learn')">
-        <span class="mob-nav-icon">📚</span>
-        <span class="mob-nav-label">Learn</span>
+      <button class="mob-nav-item" id="mnav-compare" onclick="navTo('compare')">
+        <span class="mob-nav-icon">⚖️</span>
+        <span class="mob-nav-label">Compare</span>
       </button>
-      <button class="mob-nav-item" id="mnav-trust" onclick="navTo('trust')">
-        <span class="mob-nav-icon">🛡️</span>
-        <span class="mob-nav-label">Trust</span>
+      <button class="mob-nav-item" id="mnav-more" onclick="toggleMobMore()">
+        <span class="mob-nav-icon">☰</span>
+        <span class="mob-nav-label">More</span>
       </button>
     </nav>
 
@@ -1745,10 +1745,15 @@ function navTo(id) {
   const navMap = {home:'home',products:'products',calculator:'calculator',compare:'compare',faq:'faq',learn:'learn',trust:'trust'};
   const navId = navMap[id]||id;
   // mob nav: compare/faq fall back to learn tab
-  const mobFallback = {compare:'learn',faq:'learn'};
+  const mobFallback = {learn:'calculator',trust:'calculator',faq:'compare'};
   const mobId = mobFallback[navId] || navId;
   const mob = document.getElementById('mnav-'+mobId);
   if(mob) mob.classList.add('active');
+  // highlight More btn for learn/trust/faq
+  if(['learn','trust','faq'].includes(navId)){
+    const moreBtn = document.getElementById('mnav-more');
+    if(moreBtn) moreBtn.classList.add('active');
+  }
   const side = document.getElementById('side-'+navId);
   if(side) side.classList.add('active');
   const wrap = document.querySelector('.content-wrap');
@@ -1756,6 +1761,13 @@ function navTo(id) {
   if(id==='products') buildProds('all');
   if(id==='compare') buildCmpGrid();
   if(id==='faq') buildFaq();
+  // Update desktop topbar title
+  const titles={home:'Home',products:'All Products',calculator:'Calculator',learn:'Learn & Compare',trust:'Why Trust Us',compare:'Compare Products',faq:'FAQ'};
+  const tt=document.getElementById('desk-topbar-title');
+  if(tt) tt.textContent=(titles[id]||id)+' — SML Group';
+  // Close mobile more menu if open
+  const mm=document.getElementById('mob-more-overlay');
+  if(mm) mm.style.display='none';
 }
 
 /* ════════════════════════════════════
@@ -2371,10 +2383,10 @@ function quizRestart(){
   document.getElementById('quiz-result').classList.remove('show');
   document.getElementById('quiz-form').style.display = 'block';
   document.getElementById('quiz-header') && null;
-  document.querySelector('.quiz-header').style.display = 'flex';
-  document.querySelector('.quiz-steps').style.display = 'flex';
+  const qh=document.querySelector('.quiz-header');if(qh)qh.style.display='flex';
+  const qs=document.querySelector('.quiz-steps');if(qs)qs.style.display='flex';
   document.getElementById('quiz-age').value = '';
-  
+  quizSetStep(0);
 }
 
 function quizShowResult(){
@@ -2520,15 +2532,37 @@ function quizRecommend(a){
 
 </script>
 
+
+
+<!-- Mobile More Menu -->
+<div id="mob-more-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:400;backdrop-filter:blur(4px)" onclick="toggleMobMore()">
+  <div onclick="event.stopPropagation()" style="position:absolute;bottom:0;left:0;right:0;background:#fff;border-radius:20px 20px 0 0;padding:20px 16px 36px;max-width:600px;margin:0 auto">
+    <div style="width:36px;height:4px;background:#e5e7eb;border-radius:2px;margin:0 auto 20px"></div>
+    <div style="font-family:'Space Grotesk',sans-serif;font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#9ca3af;margin-bottom:12px">More Options</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+      <button onclick="toggleMobMore();navTo('learn')" style="display:flex;align-items:center;gap:10px;padding:14px;border-radius:12px;background:#f7f5f1;border:1px solid #e5e7eb;cursor:pointer;font-family:'DM Sans',sans-serif;width:100%">
+        <span style="font-size:1.2rem">📚</span><div style="text-align:left"><div style="font-size:0.8rem;font-weight:600;color:#111827">Learn</div><div style="font-size:0.65rem;color:#9ca3af">RD, NCD, Debentures</div></div>
+      </button>
+      <button onclick="toggleMobMore();navTo('trust')" style="display:flex;align-items:center;gap:10px;padding:14px;border-radius:12px;background:#f7f5f1;border:1px solid #e5e7eb;cursor:pointer;font-family:'DM Sans',sans-serif;width:100%">
+        <span style="font-size:1.2rem">🛡️</span><div style="text-align:left"><div style="font-size:0.8rem;font-weight:600;color:#111827">Why Trust Us</div><div style="font-size:0.65rem;color:#9ca3af">Regulations & Audits</div></div>
+      </button>
+      <button onclick="toggleMobMore();navTo('compare')" style="display:flex;align-items:center;gap:10px;padding:14px;border-radius:12px;background:#f7f5f1;border:1px solid #e5e7eb;cursor:pointer;font-family:'DM Sans',sans-serif;width:100%">
+        <span style="font-size:1.2rem">⚖️</span><div style="text-align:left"><div style="font-size:0.8rem;font-weight:600;color:#111827">Compare</div><div style="font-size:0.65rem;color:#9ca3af">Side-by-side view</div></div>
+      </button>
+      <button onclick="toggleMobMore();navTo('faq')" style="display:flex;align-items:center;gap:10px;padding:14px;border-radius:12px;background:#f7f5f1;border:1px solid #e5e7eb;cursor:pointer;font-family:'DM Sans',sans-serif;width:100%">
+        <span style="font-size:1.2rem">❓</span><div style="text-align:left"><div style="font-size:0.8rem;font-weight:600;color:#111827">FAQ</div><div style="font-size:0.65rem;color:#9ca3af">Common questions</div></div>
+      </button>
+    </div>
+  </div>
+</div>
+
 <script>
-// Sync desk topbar title
-const SCREEN_TITLES = {home:'Home',products:'All Products',calculator:'Returns Calculator',learn:'Learn & Compare',trust:'Why Trust Us',compare:'Compare Products',faq:'Frequently Asked Questions'};
-const _origNavTo = navTo;
-function navTo(id){
-  _origNavTo(id);
-  const t = document.getElementById('desk-topbar-title');
-  if(t) t.textContent = (SCREEN_TITLES[id]||id) + ' — SML Group';
+function toggleMobMore(){
+  const el=document.getElementById('mob-more-overlay');
+  if(!el) return;
+  el.style.display = (el.style.display==='none'||!el.style.display) ? 'flex' : 'none';
 }
+// Init quiz
 quizSetStep(0);
 </script>
 </body>
