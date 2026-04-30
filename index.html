@@ -1,0 +1,2535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#F7F5F0">
+<title>SML Group — Trusted Investment Solutions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+/* ══════════════════════════════════════════════════════
+   TOKENS
+══════════════════════════════════════════════════════ */
+:root{
+  --bg:       #F7F5F1;
+  --bg2:      #EEEBE4;
+  --bg3:      #E5E1D8;
+  --card:     #FFFFFF;
+  --card2:    #F5F2ED;
+  --border:   rgba(0,0,0,0.07);
+  --border2:  rgba(0,0,0,0.13);
+
+  --sml:      #1B5FAB;   /* SML Finance – navy blue */
+  --sml-dim:  rgba(27,95,171,0.08);
+  --van:      #4A6E24;   /* Vanchinad – olive green */
+  --van-dim:  rgba(74,110,36,0.08);
+  --san:      #38480F;   /* Sangeeth – dark olive */
+  --san-dim:  rgba(56,72,15,0.08);
+
+  /* keep alias names so old CSS still works */
+  --gold:     #1B5FAB;
+  --gold2:    #2E7DD4;
+  --gold-dim: rgba(27,95,171,0.08);
+  --green:    #4A6E24;
+  --green-dim:rgba(74,110,36,0.08);
+  --purple:   #38480F;
+  --purple-dim:rgba(56,72,15,0.08);
+  --blue:     #2563EB;
+  --blue-dim: rgba(37,99,235,0.08);
+  --red:      #B91C1C;
+  --red-dim:  rgba(185,28,28,0.08);
+
+  --text:     #111827;
+  --text2:    #4B5563;
+  --text3:    #9CA3AF;
+
+  --r:        16px;
+  --r-sm:     10px;
+  --r-xs:     7px;
+
+  /* keep old names */
+  --radius:    16px;
+  --radius-sm: 10px;
+  --radius-xs: 7px;
+
+  --sh:       0 1px 12px rgba(0,0,0,0.07);
+  --sh-md:    0 4px 24px rgba(0,0,0,0.10);
+  --sh-lg:    0 12px 40px rgba(0,0,0,0.12);
+
+  --shadow:    0 1px 12px rgba(0,0,0,0.07);
+  --shadow-md: 0 4px 24px rgba(0,0,0,0.10);
+
+  --sidebar-w: 256px;
+  --topbar-h:  64px;
+  --mobnav-h:  64px;
+}
+
+/* ══════════════════════════════════════════════════════
+   RESET
+══════════════════════════════════════════════════════ */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+html { height:100%; }
+body {
+  font-family:'DM Sans', sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  height:100%;
+  font-size:15px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ══════════════════════════════════════════════════════
+   APP SHELL — desktop: sidebar + content
+                mobile:  topbar + content + bottom-nav
+══════════════════════════════════════════════════════ */
+.shell {
+  display:flex;
+  height:100vh;
+  overflow:hidden;
+}
+
+/* ── Sidebar ── */
+.sidebar {
+  width:var(--sidebar-w);
+  flex-shrink:0;
+  background:var(--card);
+  border-right:1px solid var(--border);
+  display:flex;
+  flex-direction:column;
+  height:100vh;
+  overflow-y:auto;
+  position:fixed;
+  left:0; top:0;
+  z-index:200;
+}
+.sidebar::-webkit-scrollbar{width:0;}
+.sidebar-brand {
+  padding:28px 24px 24px;
+  border-bottom:1px solid var(--border);
+}
+.sidebar-logo-mark {
+  display:flex; align-items:center; gap:12px; margin-bottom:14px;
+}
+.sidebar-logo-box {
+  width:42px; height:42px;
+  background:linear-gradient(135deg,#1B5FAB,#0F3D7A);
+  border-radius:12px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.2rem;
+  box-shadow:0 4px 12px rgba(27,95,171,0.3);
+  flex-shrink:0;
+}
+.sidebar-co-name {
+  font-family:'Space Grotesk',sans-serif;
+  font-size:1.1rem; font-weight:700;
+  color:var(--text); line-height:1.1;
+}
+.sidebar-co-name em { color:var(--sml); font-style:normal; }
+.sidebar-tagline {
+  font-size:0.72rem; color:var(--text3); line-height:1.4;
+}
+.sidebar-reg-badges {
+  display:flex; flex-wrap:wrap; gap:5px; margin-top:10px;
+}
+.srb {
+  font-size:0.58rem; font-weight:700; letter-spacing:0.06em;
+  text-transform:uppercase; padding:3px 8px; border-radius:100px;
+}
+.srb.blue  { background:var(--sml-dim); color:var(--sml); }
+.srb.green { background:var(--van-dim); color:var(--van); }
+.srb.olive { background:var(--san-dim); color:var(--san); }
+
+.sidebar-nav-section {
+  padding:20px 16px 4px;
+  font-size:0.6rem; font-weight:700; letter-spacing:0.1em;
+  text-transform:uppercase; color:var(--text3);
+}
+.side-item {
+  display:flex; align-items:center; gap:12px;
+  padding:10px 20px; cursor:pointer;
+  border:none; background:none; width:100%; text-align:left;
+  transition:all 0.15s;
+  border-left:3px solid transparent;
+  font-family:'DM Sans',sans-serif;
+}
+.side-item:hover { background:var(--bg); }
+.side-item.active {
+  background:var(--sml-dim);
+  border-left-color:var(--sml);
+}
+.side-item.active .si-label { color:var(--sml); font-weight:700; }
+.si-icon { font-size:1rem; width:20px; text-align:center; flex-shrink:0; }
+.si-label { font-size:0.88rem; font-weight:500; color:var(--text2); }
+.sidebar-footer {
+  margin-top:auto;
+  padding:20px 24px;
+  border-top:1px solid var(--border);
+  font-size:0.68rem; color:var(--text3); line-height:1.6;
+}
+.sidebar-footer strong { color:var(--text2); }
+
+/* ── Main content area ── */
+.main-area {
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  margin-left:var(--sidebar-w);
+  height:100vh;
+  overflow:hidden;
+}
+
+/* ── Desktop topbar (within main-area) ── */
+.desk-topbar {
+  height:var(--topbar-h);
+  background:rgba(247,245,241,0.94);
+  border-bottom:1px solid var(--border);
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 40px;
+  flex-shrink:0;
+  backdrop-filter:blur(20px);
+  position:sticky; top:0; z-index:100;
+}
+.desk-topbar-title {
+  font-family:'Space Grotesk',sans-serif;
+  font-size:1rem; font-weight:700; color:var(--text);
+}
+.desk-topbar-right {
+  display:flex; gap:10px; align-items:center;
+}
+.tb-btn {
+  padding:8px 18px; border-radius:8px;
+  font-size:0.8rem; font-weight:600;
+  cursor:pointer; transition:all 0.15s;
+  font-family:'DM Sans',sans-serif;
+  border:none;
+}
+.tb-btn.outline {
+  background:transparent; border:1px solid var(--border2); color:var(--text2);
+}
+.tb-btn.primary {
+  background:var(--sml); color:#fff;
+  box-shadow:0 2px 8px rgba(27,95,171,0.25);
+}
+.tb-btn:hover { transform:translateY(-1px); }
+
+/* ── Scrollable content ── */
+.content-wrap {
+  flex:1;
+  overflow-y:auto;
+  overflow-x:hidden;
+  scroll-behavior:smooth;
+}
+.content-wrap::-webkit-scrollbar { width:6px; }
+.content-wrap::-webkit-scrollbar-track { background:transparent; }
+.content-wrap::-webkit-scrollbar-thumb { background:var(--border2); border-radius:10px; }
+
+/* ── SCREEN PAGES ── */
+.screen { display:none; padding:40px; max-width:960px; }
+.screen.active { display:block; animation:fadeUp 0.22s ease both; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+@keyframes screenIn { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
+
+/* Mobile topbar — hidden on desktop */
+.mob-topbar { display:none; }
+
+/* Mobile bottom nav — hidden on desktop */
+.mob-nav { display:none; }
+
+/* ══════════════════════════════════════════════════════
+   MOBILE LAYOUT  < 900px
+══════════════════════════════════════════════════════ */
+@media(max-width:899px){
+  .sidebar  { display:none; }
+  .main-area { margin-left:0; }
+  .desk-topbar { display:none; }
+
+  .mob-topbar {
+    display:flex;
+    align-items:center; justify-content:space-between;
+    height:56px;
+    padding:0 18px;
+    background:rgba(247,245,241,0.96);
+    border-bottom:1px solid var(--border);
+    flex-shrink:0;
+    backdrop-filter:blur(20px);
+    z-index:100;
+    position:sticky; top:0;
+  }
+  .mob-logo {
+    display:flex; align-items:center; gap:8px;
+  }
+  .mob-logo-box {
+    width:32px; height:32px;
+    background:linear-gradient(135deg,#1B5FAB,#0F3D7A);
+    border-radius:8px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:0.9rem;
+  }
+  .mob-logo-name {
+    font-family:'Space Grotesk',sans-serif;
+    font-size:0.95rem; font-weight:700; color:var(--text);
+  }
+  .mob-logo-name em { color:var(--sml); font-style:normal; }
+  .mob-topbar-right { display:flex; gap:8px; }
+  .mob-icon-btn {
+    width:34px; height:34px; border-radius:8px;
+    background:var(--card); border:1px solid var(--border);
+    display:flex; align-items:center; justify-content:center;
+    font-size:0.9rem; cursor:pointer;
+  }
+
+  .content-wrap { padding-bottom:var(--mobnav-h); }
+
+  .screen { padding:20px 16px; max-width:100%; }
+
+  .mob-nav {
+    display:flex;
+    height:var(--mobnav-h);
+    background:rgba(247,245,241,0.97);
+    border-top:1px solid var(--border);
+    align-items:center; justify-content:space-around;
+    padding:0 4px;
+    padding-bottom:env(safe-area-inset-bottom);
+    flex-shrink:0;
+    position:sticky; bottom:0;
+    z-index:100;
+    backdrop-filter:blur(20px);
+  }
+  .mob-nav-item {
+    display:flex; flex-direction:column; align-items:center; gap:3px;
+    flex:1; padding:6px 4px;
+    border:none; background:none; cursor:pointer;
+    border-radius:10px; transition:all 0.15s;
+    font-family:'DM Sans',sans-serif;
+  }
+  .mob-nav-item.active { background:var(--sml-dim); }
+  .mob-nav-icon { font-size:1.2rem; }
+  .mob-nav-label {
+    font-size:0.56rem; font-weight:600; color:var(--text3);
+    text-transform:uppercase; letter-spacing:0.05em;
+  }
+  .mob-nav-item.active .mob-nav-label { color:var(--sml); }
+}
+
+/* ══════════════════════════════════════════════════════
+   SECTION TITLE
+══════════════════════════════════════════════════════ */
+.section-title {
+  font-family:'Space Grotesk',sans-serif;
+  font-size:0.65rem; font-weight:700;
+  text-transform:uppercase; letter-spacing:0.1em;
+  color:var(--text3);
+  margin-bottom:14px; margin-top:4px;
+  display:flex; align-items:center; justify-content:space-between;
+}
+.see-all {
+  font-size:0.72rem; color:var(--sml); font-weight:600;
+  cursor:pointer; font-family:'DM Sans',sans-serif;
+  text-transform:none; letter-spacing:0;
+}
+
+/* ══════════════════════════════════════════════════════
+   BACK BUTTON
+══════════════════════════════════════════════════════ */
+.back-btn {
+  display:inline-flex; align-items:center; gap:6px;
+  padding:7px 16px 7px 12px; border-radius:100px;
+  background:var(--card); border:1px solid var(--border2);
+  font-size:0.78rem; font-weight:600; color:var(--text2);
+  cursor:pointer; transition:all 0.15s; margin-bottom:20px;
+  font-family:'DM Sans',sans-serif; box-shadow:var(--sh);
+}
+.back-btn:hover { background:var(--bg2); }
+
+/* ══════════════════════════════════════════════════════
+   HERO BANNER (home)
+══════════════════════════════════════════════════════ */
+.hero-banner {
+  background:linear-gradient(135deg,#0F2A55 0%,#1B5FAB 60%,#1A3A6E 100%);
+  border-radius:var(--r);
+  padding:36px 32px;
+  margin-bottom:28px;
+  position:relative; overflow:hidden;
+}
+@media(max-width:899px){ .hero-banner{padding:24px 20px; margin-bottom:20px;} }
+.hero-banner::before {
+  content:''; position:absolute;
+  top:-60px; right:-60px; width:220px; height:220px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(255,255,255,0.08) 0%,transparent 70%);
+}
+.hero-banner::after {
+  content:''; position:absolute;
+  bottom:-80px; left:-20px; width:200px; height:200px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(74,110,36,0.15) 0%,transparent 70%);
+}
+.hero-tag {
+  display:inline-flex; align-items:center; gap:6px;
+  background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.2);
+  color:#fff; font-size:0.62rem; font-weight:700;
+  letter-spacing:0.1em; text-transform:uppercase;
+  padding:4px 10px; border-radius:100px; margin-bottom:14px;
+}
+.hero-pulse {
+  width:5px; height:5px; background:#fff; border-radius:50%;
+  animation:pulse 2s infinite;
+}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+.hero-title {
+  font-family:'DM Serif Display',serif;
+  font-size:2.2rem; font-weight:400;
+  color:#fff; line-height:1.15; margin-bottom:10px;
+  position:relative; z-index:1;
+}
+@media(max-width:899px){ .hero-title{font-size:1.5rem;} }
+.hero-title em { color:#FFD97A; font-style:normal; }
+.hero-sub {
+  font-size:0.88rem; color:rgba(255,255,255,0.78);
+  line-height:1.65; position:relative; z-index:1; max-width:480px;
+}
+@media(max-width:899px){ .hero-sub{font-size:0.78rem;} }
+.hero-stats-row {
+  display:grid; grid-template-columns:repeat(4,1fr);
+  gap:0; margin-top:28px;
+  background:rgba(0,0,0,0.18); border-radius:10px; overflow:hidden;
+  position:relative; z-index:1;
+}
+@media(max-width:899px){ .hero-stats-row{margin-top:20px;} }
+.hero-stat { padding:14px 10px; text-align:center; border-right:1px solid rgba(255,255,255,0.1); }
+.hero-stat:last-child { border-right:none; }
+.hero-stat-num {
+  font-family:'Space Grotesk',sans-serif;
+  font-size:1.3rem; font-weight:700; color:#FFD97A;
+}
+@media(max-width:899px){ .hero-stat-num{font-size:1.1rem;} }
+.hero-stat-label { font-size:0.58rem; color:rgba(255,255,255,0.65); text-transform:uppercase; letter-spacing:0.06em; margin-top:3px; }
+
+/* ══════════════════════════════════════════════════════
+   COMPANY CARDS (home page)
+══════════════════════════════════════════════════════ */
+.co-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px; margin-bottom:32px;
+}
+@media(max-width:899px){ .co-grid{grid-template-columns:1fr; gap:10px; margin-bottom:20px;} }
+.co-card {
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--r);
+  padding:24px 20px;
+  cursor:pointer;
+  transition:all 0.18s;
+  position:relative; overflow:hidden;
+  box-shadow:var(--sh);
+}
+.co-card:hover { transform:translateY(-3px); box-shadow:var(--sh-md); }
+.co-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:4px;
+}
+.co-card.sml::before { background:linear-gradient(90deg,#1B5FAB,#2E7DD4); }
+.co-card.van::before { background:linear-gradient(90deg,#4A6E24,#72A33D); }
+.co-card.san::before { background:linear-gradient(90deg,#38480F,#5A7020); }
+.co-card-icon {
+  width:44px; height:44px; border-radius:12px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.3rem; margin-bottom:14px;
+}
+.co-card.sml .co-card-icon { background:var(--sml-dim); }
+.co-card.van .co-card-icon { background:var(--van-dim); }
+.co-card.san .co-card-icon { background:var(--san-dim); }
+.co-card-rate {
+  font-family:'Space Grotesk',sans-serif;
+  font-size:1.8rem; font-weight:700; margin-bottom:2px; line-height:1;
+}
+.co-card.sml .co-card-rate { color:var(--sml); }
+.co-card.van .co-card-rate { color:var(--van); }
+.co-card.san .co-card-rate { color:var(--san); }
+.co-card-rate-label { font-size:0.68rem; color:var(--text3); margin-bottom:10px; }
+.co-card-name {
+  font-family:'Space Grotesk',sans-serif;
+  font-size:0.9rem; font-weight:700; color:var(--text); margin-bottom:4px;
+}
+.co-card-reg { font-size:0.65rem; font-weight:600; text-transform:uppercase; letter-spacing:0.07em; margin-bottom:10px; }
+.co-card.sml .co-card-reg { color:var(--sml); }
+.co-card.van .co-card-reg { color:var(--van); }
+.co-card.san .co-card-reg { color:var(--san); }
+.co-card-desc { font-size:0.76rem; color:var(--text2); line-height:1.65; }
+.co-card-footer {
+  margin-top:14px; padding-top:12px; border-top:1px solid var(--border);
+  display:flex; align-items:center; justify-content:space-between;
+}
+.co-card-products { font-size:0.68rem; color:var(--text3); }
+.co-card-arrow { font-size:0.8rem; color:var(--text3); }
+
+/* ══════════════════════════════════════════════════════
+   RATE CARDS
+══════════════════════════════════════════════════════ */
+.rate-cards {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px; margin-bottom:32px;
+}
+@media(max-width:899px){ .rate-cards{grid-template-columns:1fr 1fr; gap:10px; margin-bottom:20px;} }
+.rate-card {
+  background:var(--card); border:1px solid var(--border);
+  border-radius:var(--r-sm); padding:18px 14px;
+  cursor:pointer; transition:all 0.18s; box-shadow:var(--sh);
+}
+.rate-card:hover { transform:translateY(-2px); box-shadow:var(--sh-md); border-color:var(--border2); }
+.rate-card-label { font-size:0.68rem; color:var(--text3); margin-bottom:6px; font-weight:500; }
+.rate-card-val {
+  font-family:'Space Grotesk',sans-serif;
+  font-size:1.6rem; font-weight:700; margin-bottom:4px; line-height:1;
+}
+.rate-card-val.gold { color:var(--sml); }
+.rate-card-val.green { color:var(--van); }
+.rate-card-val.purple { color:var(--san); }
+.rate-card-sub { font-size:0.65rem; color:var(--text3); margin-bottom:8px; }
+.rate-card-badge {
+  display:inline-block; font-size:0.6rem; font-weight:700;
+  text-transform:uppercase; letter-spacing:0.06em;
+  padding:3px 8px; border-radius:100px;
+}
+.badge-gold { background:var(--sml-dim); color:var(--sml); }
+.badge-green { background:var(--van-dim); color:var(--van); }
+
+/* ══════════════════════════════════════════════════════
+   BANK COMPARISON
+══════════════════════════════════════════════════════ */
+.bank-compare-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px; }
+.bank-card {
+  background:var(--card); border:1px solid var(--border);
+  border-radius:var(--r-sm); padding:16px;
+  position:relative; overflow:hidden; box-shadow:var(--sh);
+}
+.bank-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; }
+.bank-card.sbi::before  { background:linear-gradient(90deg,#0055A5,#0077CC); }
+.bank-card.hdfc::before { background:linear-gradient(90deg,#004C8F,#E31837); }
+.bank-card-logo { font-size:0.65rem; font-weight:700; letter-spacing:0.05em; color:var(--text3); text-transform:uppercase; margin-bottom:5px; }
+.bank-card-rate { font-family:'Space Grotesk',sans-serif; font-size:1.4rem; font-weight:700; color:var(--text); margin-bottom:2px; }
+.bank-card-sub  { font-size:0.62rem; color:var(--text3); }
+.vs-strip {
+  background:linear-gradient(135deg,#0F2A55,#1B5FAB);
+  border-radius:var(--r-sm); padding:16px 18px;
+  display:flex; align-items:center; gap:12px;
+  margin-bottom:32px;
+}
+@media(max-width:899px){ .vs-strip{margin-bottom:20px;} }
+.vs-strip-icon { font-size:1.5rem; flex-shrink:0; }
+.vs-strip-text { flex:1; }
+.vs-strip-title { font-family:'Space Grotesk',sans-serif; font-size:0.9rem; font-weight:700; color:#fff; margin-bottom:2px; }
+.vs-strip-sub   { font-size:0.7rem; color:rgba(255,255,255,0.75); line-height:1.4; }
+.vs-strip-btn {
+  padding:8px 14px; border-radius:8px;
+  background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.3);
+  color:#fff; font-size:0.72rem; font-weight:600; cursor:pointer;
+  white-space:nowrap; font-family:'DM Sans',sans-serif; flex-shrink:0;
+}
+
+/* ══════════════════════════════════════════════════════
+   TRUST PILLS
+══════════════════════════════════════════════════════ */
+.trust-row { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:28px; }
+@media(max-width:899px){ .trust-row{margin-bottom:18px;} }
+.trust-pill {
+  display:flex; align-items:center; gap:6px;
+  background:var(--card); border:1px solid var(--border2);
+  border-radius:100px; padding:6px 14px;
+  font-size:0.72rem; font-weight:600; color:var(--text2);
+  box-shadow:var(--sh);
+}
+.trust-pill-dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+.trust-pill-dot.blue  { background:var(--sml); }
+.trust-pill-dot.green { background:var(--van); }
+.trust-pill-dot.olive { background:var(--san); }
+
+/* ══════════════════════════════════════════════════════
+   QUICK ACTIONS
+══════════════════════════════════════════════════════ */
+.quick-grid {
+  display:grid; grid-template-columns:repeat(4,1fr);
+  gap:12px; margin-bottom:32px;
+}
+@media(max-width:899px){ .quick-grid{gap:8px; margin-bottom:20px;} }
+.quick-btn {
+  background:var(--card); border:1px solid var(--border);
+  border-radius:var(--r-sm); padding:18px 12px;
+  text-align:center; cursor:pointer; transition:all 0.15s;
+  box-shadow:var(--sh);
+}
+.quick-btn:hover { transform:translateY(-2px); box-shadow:var(--sh-md); }
+.quick-btn-icon  { font-size:1.4rem; margin-bottom:8px; }
+.quick-btn-label { font-size:0.72rem; font-weight:600; color:var(--text2); }
+
+/* ══════════════════════════════════════════════════════
+   REGULATORY SAFEGUARDS (info card)
+══════════════════════════════════════════════════════ */
+.info-card {
+  background:var(--card); border:1px solid var(--border);
+  border-radius:var(--r); padding:24px;
+  margin-bottom:20px; box-shadow:var(--sh);
+}
+@media(max-width:899px){ .info-card{padding:18px;} }
+.info-card-head { display:flex; align-items:center; gap:14px; margin-bottom:16px; }
+.info-card-icon {
+  width:46px; height:46px; border-radius:12px;
+  display:flex; align-items:center; justify-content:center; font-size:1.3rem; flex-shrink:0;
+}
+.info-card-icon.blue  { background:var(--sml-dim); }
+.info-card-icon.green { background:var(--van-dim); }
+.info-card-icon.olive { background:var(--san-dim); }
+.info-card-title {
+  font-family:'Space Grotesk',sans-serif;
+  font-size:1rem; font-weight:700; color:var(--text); margin-bottom:3px;
+}
+.info-card-badge {
+  font-size:0.6rem; font-weight:700; text-transform:uppercase;
+  letter-spacing:0.07em; padding:2px 8px; border-radius:100px;
+}
+.info-card-badge.blue  { background:var(--sml-dim); color:var(--sml); }
+.info-card-badge.green { background:var(--van-dim); color:var(--van); }
+.info-card-badge.olive { background:var(--san-dim); color:var(--san); }
+.info-card-body { font-size:0.82rem; color:var(--text2); line-height:1.8; }
+.info-card-body p { margin-bottom:10px; }
+.info-card-body p:last-child { margin-bottom:0; }
+.info-card-body strong { color:var(--text); font-weight:600; }
+.info-highlight-row { display:flex; gap:10px; margin:14px 0; }
+.info-highlight-item {
+  flex:1; background:var(--bg3); border-radius:var(--r-xs);
+  padding:12px 8px; text-align:center; border:1px solid var(--border);
+}
+.info-highlight-num {
+  font-family:'Space Grotesk',sans-serif;
+  font-size:1.1rem; font-weight:700; color:var(--sml);
+}
+.info-highlight-lbl { font-size:0.58rem; color:var(--text3); text-transform:uppercase; letter-spacing:0.05em; margin-top:3px; }
+
+/* ══════════════════════════════════════════════════════
+   NOTICE PILL
+══════════════════════════════════════════════════════ */
+.notice-pill {
+  display:flex; align-items:flex-start; gap:8px;
+  background:var(--red-dim); border:1px solid rgba(185,28,28,0.15);
+  border-radius:var(--r-xs); padding:12px 14px;
+  font-size:0.74rem; color:var(--red); line-height:1.5;
+  margin-bottom:10px;
+}
+
+/* ══════════════════════════════════════════════════════
+   PRODUCTS SCREEN
+══════════════════════════════════════════════════════ */
+.pill-filters { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:20px; }
+.pill {
+  padding:7px 16px; border-radius:100px;
+  background:var(--card); border:1px solid var(--border2);
+  font-size:0.78rem; font-weight:600; color:var(--text2);
+  cursor:pointer; transition:all 0.15s; font-family:'DM Sans',sans-serif;
+}
+.pill.active, .pill:hover { background:var(--sml); color:#fff; border-color:var(--sml); }
+#prod-list {
+  display:grid; grid-template-columns:1fr;
+  gap:12px;
+}
+@media(min-width:600px){ #prod-list{ grid-template-columns:1fr 1fr; } }
+@media(min-width:1000px){ #prod-list{ grid-template-columns:1fr 1fr 1fr; } }
+.prod-card {
+  background:var(--card); border:1px solid var(--border);
+  border-radius:var(--r-sm); padding:18px;
+  cursor:pointer; transition:all 0.18s; position:relative; overflow:hidden;
+  box-shadow:var(--sh);
+}
+.prod-card:hover { transform:translateY(-2px); box-shadow:var(--sh-md); }
+.prod-card-stripe { position:absolute; top:0; left:0; right:0; height:3px; }
+.prod-card.sml .prod-card-stripe { background:linear-gradient(90deg,#1B5FAB,#2E7DD4); }
+.prod-card.van .prod-card-stripe { background:linear-gradient(90deg,#4A6E24,#72A33D); }
+.prod-card.san .prod-card-stripe { background:linear-gradient(90deg,#38480F,#5A7020); }
+.prod-company { font-size:0.6rem; font-weight:700; text-transform:uppercase; letter-spacing:0.07em; margin-bottom:4px; }
+.prod-company.sml { color:var(--sml); }
+.prod-company.van { color:var(--van); }
+.prod-company.san { color:var(--san); }
+.prod-name { font-family:'Space Grotesk',sans-serif; font-size:0.92rem; font-weight:700; color:var(--text); line-height:1.25; margin-bottom:6px; }
+.prod-rate-badge {
+  display:inline-block; font-size:0.72rem; font-weight:700;
+  padding:3px 10px; border-radius:100px; margin-bottom:8px;
+}
+.prod-rate-badge.gold   { background:var(--sml-dim); color:var(--sml); }
+.prod-rate-badge.green  { background:var(--van-dim); color:var(--van); }
+.prod-rate-badge.olive  { background:var(--san-dim); color:var(--san); }
+.prod-rate-badge.blue   { background:var(--blue-dim); color:var(--blue); }
+.prod-min { font-size:0.68rem; color:var(--text3); }
+
+/* ══════════════════════════════════════════════════════
+   CALCULATOR
+══════════════════════════════════════════════════════ */
+.calc-layout {
+  display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:start;
+}
+@media(max-width:899px){ .calc-layout{grid-template-columns:1fr; gap:16px;} }
+.calc-card {
+  background:var(--card); border:1px solid var(--border);
+  border-radius:var(--r); padding:28px; box-shadow:var(--sh);
+}
+@media(max-width:899px){ .calc-card{padding:20px;} }
+.calc-label { font-size:0.72rem; font-weight:600; color:var(--text2); margin-bottom:6px; display:block; }
+.calc-select, .calc-input-field {
+  width:100%; padding:11px 14px; border-radius:var(--r-xs);
+  background:var(--bg2); border:1px solid var(--border2);
+  font-size:0.88rem; color:var(--text); font-family:'DM Sans',sans-serif;
+  outline:none; transition:border-color 0.15s; margin-bottom:16px;
+  appearance:none; -webkit-appearance:none;
+}
+.calc-select:focus, .calc-input-field:focus { border-color:var(--sml); background:#fff; }
+.calc-select {
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%231B5FAB' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat:no-repeat; background-position:right 12px center;
+  padding-right:36px;
+}
+.amt-hint { font-size:0.7rem; color:var(--text3); margin-top:-10px; margin-bottom:14px; }
+.period-group { margin-bottom:16px; }
+.period-hint  { font-size:0.7rem; color:var(--text3); margin-top:4px; }
+.period-step-label { font-size:0.72rem; font-weight:600; color:var(--text2); margin-bottom:6px; display:block; }
+.step-list { display:flex; flex-direction:column; gap:6px; }
+.step-item { display:flex; align-items:baseline; gap:8px; font-size:0.78rem; color:var(--text2); }
+.step-num {
+  width:18px; height:18px; border-radius:50%;
+  background:var(--sml); color:#fff;
+  display:flex; align-items:center; justify-content:center;
+  font-size:0.58rem; font-weight:700; flex-shrink:0;
+}
+.tier-group { margin-bottom:16px; }
+.tier-opts  { display:flex; flex-direction:column; gap:8px; }
+.tier-opt {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:12px 14px; border-radius:var(--r-xs);
+  border:1.5px solid var(--border2); cursor:pointer;
+  transition:all 0.15s; background:var(--bg2);
+}
+.tier-opt:hover { border-color:var(--sml); }
+.tier-opt.selected { border-color:var(--sml); background:var(--sml-dim); }
+.tier-opt-label { font-size:0.8rem; color:var(--text2); }
+.tier-opt-rate  { font-family:'Space Grotesk',sans-serif; font-size:0.95rem; font-weight:700; color:var(--sml); flex-shrink:0; }
+.calc-btn {
+  width:100%; padding:14px;
+  border-radius:var(--r-xs); margin-top:4px;
+  background:linear-gradient(135deg,var(--sml),#0F3D7A);
+  color:#fff; font-size:0.9rem; font-weight:700;
+  border:none; cursor:pointer; font-family:'Space Grotesk',sans-serif;
+  transition:all 0.18s; box-shadow:0 4px 16px rgba(27,95,171,0.3);
+}
+.calc-btn:hover { transform:translateY(-1px); box-shadow:0 6px 20px rgba(27,95,171,0.35); }
+.calc-btn:active { transform:scale(0.99); }
+
+/* Results */
+.results-box { display:none; margin-top:0; }
+.results-box.show { display:block; animation:fadeUp 0.25s ease both; }
+.results-head {
+  background:linear-gradient(135deg,#0F2A55,#1B5FAB);
+  padding:18px 22px; border-radius:var(--r) var(--r) 0 0;
+}
+.results-head-title { font-family:'Space Grotesk',sans-serif; font-size:0.95rem; font-weight:700; color:#fff; }
+.results-head-sub   { font-size:0.68rem; color:rgba(255,255,255,0.72); margin-top:2px; }
+.res-cards {
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:12px; padding:20px;
+  background:var(--card);
+  border:1px solid var(--border); border-top:none;
+  border-radius:0 0 var(--r) var(--r);
+}
+@media(min-width:600px){ .res-cards{grid-template-columns:1fr 1fr 1fr;} }
+.res-card {
+  background:var(--bg2); border-radius:var(--r-xs);
+  padding:14px; border:1px solid var(--border);
+}
+.res-card.highlight {
+  background:linear-gradient(135deg,var(--sml-dim),rgba(27,95,171,0.03));
+  border-color:rgba(27,95,171,0.2);
+}
+.res-label { font-size:0.62rem; font-weight:700; text-transform:uppercase; letter-spacing:0.07em; color:var(--text3); margin-bottom:5px; }
+.res-val   { font-family:'Space Grotesk',sans-serif; font-size:1.5rem; font-weight:700; color:var(--text); line-height:1; margin-bottom:4px; }
+.res-val.gold   { color:var(--sml); }
+.res-val.green  { color:var(--van); }
+.res-sub { font-size:0.65rem; color:var(--text3); line-height:1.4; }
+.closure-box {
+  background:var(--sml-dim); border:1px solid rgba(27,95,171,0.15);
+  border-radius:var(--r-xs); padding:14px 16px; margin:0 20px 20px;
+}
+.closure-box-title { font-size:0.68rem; font-weight:700; color:var(--sml); text-transform:uppercase; letter-spacing:0.07em; margin-bottom:8px; }
+.closure-row { display:flex; justify-content:space-between; font-size:0.72rem; color:var(--text2); padding:3px 0; border-bottom:1px solid rgba(27,95,171,0.1); }
+.closure-row:last-child { border-bottom:none; }
+
+/* ══════════════════════════════════════════════════════
+   COMPARE
+══════════════════════════════════════════════════════ */
+.cmp-grid { display:flex; flex-direction:column; gap:10px; margin-bottom:20px; }
+.cmp-item {
+  background:var(--card); border:1.5px solid var(--border2);
+  border-radius:var(--r-sm); padding:14px 16px;
+  display:flex; align-items:center; justify-content:space-between;
+  cursor:pointer; transition:all 0.15s; box-shadow:var(--sh);
+}
+.cmp-item:hover  { border-color:var(--sml); }
+.cmp-item.selected { border-color:var(--sml); background:var(--sml-dim); }
+.cmp-item-name { font-size:0.85rem; font-weight:600; color:var(--text); }
+.cmp-item-co   { font-size:0.68rem; color:var(--text3); margin-top:2px; }
+.cmp-item-rate { font-family:'Space Grotesk',sans-serif; font-size:0.95rem; font-weight:700; color:var(--sml); }
+.cmp-run-btn {
+  width:100%; padding:14px; border-radius:var(--r-xs);
+  background:var(--sml); color:#fff;
+  font-size:0.88rem; font-weight:700; border:none; cursor:pointer;
+  font-family:'Space Grotesk',sans-serif; margin-bottom:20px;
+  transition:all 0.18s; box-shadow:0 4px 16px rgba(27,95,171,0.3);
+}
+.cmp-run-btn:hover { transform:translateY(-1px); }
+.cmp-table { width:100%; border-collapse:collapse; min-width:360px; }
+.cmp-table th {
+  background:var(--bg3); padding:10px 12px;
+  font-size:0.72rem; font-weight:700; color:var(--text2);
+  text-align:left; border-bottom:1px solid var(--border);
+}
+.cmp-table td {
+  padding:10px 12px; font-size:0.78rem; color:var(--text2);
+  border-bottom:1px solid var(--border); text-align:left;
+}
+.cmp-table tr:nth-child(even) td { background:rgba(0,0,0,0.02); }
+
+/* ══════════════════════════════════════════════════════
+   FAQ
+══════════════════════════════════════════════════════ */
+.faq-items { display:flex; flex-direction:column; gap:8px; }
+.faq-card {
+  background:var(--card); border:1px solid var(--border);
+  border-radius:var(--r-sm); overflow:hidden;
+  cursor:pointer; transition:all 0.15s; box-shadow:var(--sh);
+}
+.faq-card.open { border-color:rgba(27,95,171,0.25); }
+.faq-q {
+  padding:14px 16px; display:flex;
+  align-items:center; justify-content:space-between; gap:12px;
+  font-size:0.85rem; font-weight:600; color:var(--text);
+}
+.faq-arr { font-size:0.7rem; color:var(--sml); flex-shrink:0; }
+.faq-a {
+  display:none; padding:0 16px 14px;
+  font-size:0.8rem; color:var(--text2); line-height:1.7;
+}
+.faq-card.open .faq-a { display:block; }
+
+/* ══════════════════════════════════════════════════════
+   DRAWER (product/company detail)
+══════════════════════════════════════════════════════ */
+.drawer-overlay {
+  display:none; position:fixed; inset:0;
+  background:rgba(20,30,60,0.5);
+  z-index:300; backdrop-filter:blur(4px);
+}
+.drawer-overlay.open { display:flex; align-items:flex-end; justify-content:center; }
+.drawer-content {
+  position:relative; bottom:0; left:0; right:0;
+  background:var(--card);
+  border-radius:var(--r) var(--r) 0 0;
+  padding:28px 28px 36px;
+  max-height:82vh; overflow-y:auto;
+  width:100%; max-width:640px;
+  box-shadow:0 -8px 40px rgba(0,0,0,0.15);
+}
+.drawer-content::-webkit-scrollbar{width:0;}
+.drawer-handle {
+  width:36px; height:4px; border-radius:2px;
+  background:var(--border2); margin:0 auto 20px;
+}
+.drawer-company-tag {
+  font-size:0.6rem; font-weight:700; text-transform:uppercase;
+  letter-spacing:0.08em; color:var(--sml); margin-bottom:3px;
+}
+.drawer-company-tag.van { color:var(--van); }
+.drawer-company-tag.san { color:var(--san); }
+.drawer-title {
+  font-family:'Space Grotesk',sans-serif;
+  font-size:1.1rem; font-weight:700; color:var(--text); margin-bottom:16px;
+}
+.drawer-section { margin-bottom:16px; }
+.drawer-section-title {
+  font-size:0.62rem; font-weight:700; text-transform:uppercase;
+  letter-spacing:0.09em; color:var(--sml); margin-bottom:10px;
+}
+.feat-rows { display:flex; flex-direction:column; gap:8px; }
+.feat-row {
+  background:var(--bg2); border-radius:var(--r-xs);
+  padding:12px 14px; border:1px solid var(--border);
+}
+.feat-row-rate {
+  font-family:'Space Grotesk',sans-serif;
+  font-size:1.1rem; font-weight:700; color:var(--sml); margin-bottom:2px;
+}
+.feat-row-detail { font-size:0.72rem; color:var(--text2); line-height:1.5; }
+.closure-terms { margin-top:12px; }
+.closure-terms-title { font-size:0.68rem; font-weight:700; color:var(--text2); margin-bottom:6px; }
+.drawer-calc-btn {
+  width:100%; padding:14px; border-radius:var(--r-xs);
+  background:var(--sml); color:#fff;
+  font-size:0.9rem; font-weight:700; border:none; cursor:pointer;
+  font-family:'Space Grotesk',sans-serif; margin-top:8px; transition:all 0.18s;
+}
+.drawer-calc-btn:hover { background:#0F3D7A; }
+
+/* ══════════════════════════════════════════════════════
+   CREDIBILITY / TRUST SCREEN
+══════════════════════════════════════════════════════ */
+.cred-hero {
+  background:linear-gradient(135deg,#0F2A55 0%,#1B5FAB 100%);
+  border-radius:var(--r); padding:32px; margin-bottom:24px; text-align:center;
+}
+@media(max-width:899px){ .cred-hero{padding:22px;} }
+.cred-hero-title {
+  font-family:'DM Serif Display',serif;
+  font-size:1.6rem; color:#fff; margin-bottom:8px;
+}
+@media(max-width:899px){ .cred-hero-title{font-size:1.2rem;} }
+.cred-hero-sub { font-size:0.78rem; color:rgba(255,255,255,0.75); line-height:1.6; }
+.reg-cards {
+  display:grid; grid-template-columns:1fr;
+  gap:14px; margin-bottom:24px;
+}
+@media(min-width:700px){ .reg-cards{grid-template-columns:1fr 1fr;} }
+.reg-card {
+  background:var(--card); border:1px solid var(--border);
+  border-radius:var(--r-sm); padding:20px;
+  display:flex; gap:16px; align-items:flex-start;
+  box-shadow:var(--sh); transition:box-shadow 0.18s;
+}
+.reg-card:hover { box-shadow:var(--sh-md); }
+.reg-card-badge {
+  width:46px; height:46px; border-radius:12px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.2rem; flex-shrink:0;
+}
+.reg-card-badge.sml { background:var(--sml-dim); }
+.reg-card-badge.van { background:var(--van-dim); }
+.reg-card-badge.san { background:var(--san-dim); }
+.reg-card-name { font-family:'Space Grotesk',sans-serif; font-size:0.9rem; font-weight:700; color:var(--text); margin-bottom:3px; }
+.reg-card-reg  { font-size:0.65rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:6px; }
+.reg-card-reg.sml { color:var(--sml); }
+.reg-card-reg.van { color:var(--van); }
+.reg-card-reg.san { color:var(--san); }
+.reg-card-desc { font-size:0.76rem; color:var(--text2); line-height:1.65; }
+.milestone-row { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:24px; }
+.milestone-item {
+  background:var(--card); border:1px solid var(--border);
+  border-radius:var(--r-sm); padding:16px 12px; text-align:center; box-shadow:var(--sh);
+}
+.milestone-num { font-family:'Space Grotesk',sans-serif; font-size:1.3rem; font-weight:700; color:var(--sml); }
+.milestone-lbl { font-size:0.6rem; color:var(--text3); text-transform:uppercase; letter-spacing:0.05em; margin-top:4px; line-height:1.3; }
+
+/* ══════════════════════════════════════════════════════
+   LEARN SCREEN
+══════════════════════════════════════════════════════ */
+.learn-grid { display:grid; grid-template-columns:1fr; gap:16px; }
+@media(min-width:700px){ .learn-grid{grid-template-columns:1fr 1fr;} }
+
+/* ══════════════════════════════════════════════════════
+   SMART PRODUCT FINDER (in Calculator screen)
+══════════════════════════════════════════════════════ */
+.quiz-card {
+  background:linear-gradient(135deg,#0F2A55 0%,#1B5FAB 100%);
+  border-radius:var(--r); padding:28px 28px 24px;
+  margin-bottom:28px; position:relative; overflow:hidden;
+}
+@media(max-width:899px){ .quiz-card{padding:20px 18px;} }
+.quiz-card::before {
+  content:''; position:absolute; top:-50px; right:-50px;
+  width:180px; height:180px; border-radius:50%;
+  background:radial-gradient(circle,rgba(255,255,255,0.08) 0%,transparent 70%);
+  pointer-events:none;
+}
+.quiz-steps { display:flex; gap:4px; margin-bottom:20px; }
+.quiz-step-dot { height:3px; flex:1; border-radius:100px; background:rgba(255,255,255,0.2); transition:background 0.3s; }
+.quiz-step-dot.done   { background:rgba(255,255,255,0.85); }
+.quiz-step-dot.active { background:#FFD97A; }
+.quiz-header { display:flex; align-items:center; gap:12px; margin-bottom:18px; }
+.quiz-icon   { font-size:1.5rem; }
+.quiz-title  { font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:700; color:#fff; margin-bottom:2px; }
+.quiz-sub    { font-size:0.72rem; color:rgba(255,255,255,0.72); }
+.quiz-q      { font-size:0.85rem; font-weight:600; color:#fff; margin-bottom:12px; }
+.quiz-opts   { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px; }
+.quiz-opt {
+  padding:8px 16px; border-radius:100px;
+  background:rgba(255,255,255,0.1); border:1.5px solid rgba(255,255,255,0.18);
+  color:rgba(255,255,255,0.85); font-size:0.76rem; font-weight:500;
+  cursor:pointer; transition:all 0.15s; font-family:'DM Sans',sans-serif;
+}
+.quiz-opt:hover  { background:rgba(255,255,255,0.18); }
+.quiz-opt.selected { background:#FFD97A; border-color:#FFD97A; color:#0F2A55; font-weight:700; }
+.quiz-age-row { display:flex; gap:8px; align-items:center; margin-bottom:16px; }
+.quiz-age-input {
+  flex:1; padding:10px 16px; border-radius:100px;
+  background:rgba(255,255,255,0.1); border:1.5px solid rgba(255,255,255,0.2);
+  color:#fff; font-size:0.9rem; font-family:'DM Sans',sans-serif; font-weight:600;
+  outline:none; text-align:center;
+}
+.quiz-age-input::placeholder { color:rgba(255,255,255,0.4); font-weight:400; }
+.quiz-age-input:focus { border-color:#FFD97A; }
+.quiz-age-input::-webkit-outer-spin-button,
+.quiz-age-input::-webkit-inner-spin-button { -webkit-appearance:none; }
+.quiz-nav { display:flex; gap:8px; }
+.quiz-back-btn {
+  padding:10px 16px; border-radius:8px;
+  background:rgba(255,255,255,0.1); border:1.5px solid rgba(255,255,255,0.2);
+  color:rgba(255,255,255,0.85); font-size:0.76rem; font-weight:600;
+  cursor:pointer; font-family:'DM Sans',sans-serif; transition:all 0.15s;
+}
+.quiz-next-btn {
+  flex:1; padding:11px 18px; border-radius:8px;
+  background:#FFD97A; border:none;
+  color:#0F2A55; font-size:0.82rem; font-weight:700;
+  cursor:pointer; font-family:'Space Grotesk',sans-serif;
+  transition:all 0.15s; opacity:0.4; pointer-events:none;
+}
+.quiz-next-btn.ready { opacity:1; pointer-events:auto; }
+.quiz-next-btn:hover { background:#FFE8A3; }
+.quiz-result { display:none; flex-direction:column; gap:10px; }
+.quiz-result.show { display:flex; }
+.quiz-rec-title { font-family:'Space Grotesk',sans-serif; font-size:0.95rem; font-weight:700; color:#fff; margin-bottom:3px; }
+.quiz-rec-sub   { font-size:0.7rem; color:rgba(255,255,255,0.72); margin-bottom:12px; }
+.quiz-rec-card {
+  background:#fff; border-radius:10px;
+  padding:16px; display:flex; align-items:flex-start; gap:12px;
+  cursor:pointer; transition:transform 0.15s;
+}
+.quiz-rec-card:hover { transform:scale(1.01); }
+.quiz-rec-card.secondary { background:rgba(255,255,255,0.85); }
+.quiz-rec-rank { width:26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.65rem; font-weight:800; flex-shrink:0; margin-top:1px; }
+.quiz-rec-rank.r1 { background:var(--sml); color:#fff; }
+.quiz-rec-rank.r2 { background:var(--bg3); color:var(--text2); }
+.quiz-rec-co     { font-size:0.6rem; font-weight:700; text-transform:uppercase; letter-spacing:0.07em; margin-bottom:2px; }
+.quiz-rec-co.sml { color:var(--sml); }
+.quiz-rec-co.van { color:var(--van); }
+.quiz-rec-co.san { color:var(--san); }
+.quiz-rec-prod   { font-family:'Space Grotesk',sans-serif; font-size:0.85rem; font-weight:700; color:var(--text); margin-bottom:3px; }
+.quiz-rec-reason { font-size:0.68rem; color:var(--text2); line-height:1.5; }
+.quiz-rec-rate   { font-family:'Space Grotesk',sans-serif; font-size:1.1rem; font-weight:700; flex-shrink:0; margin-top:2px; }
+.quiz-rec-rate.sml { color:var(--sml); }
+.quiz-rec-rate.van { color:var(--van); }
+.quiz-rec-rate.san { color:var(--san); }
+.quiz-restart-btn {
+  padding:10px; border-radius:8px; text-align:center;
+  background:rgba(255,255,255,0.1); border:1.5px solid rgba(255,255,255,0.2);
+  color:rgba(255,255,255,0.85); font-size:0.72rem; font-weight:600;
+  cursor:pointer; font-family:'DM Sans',sans-serif; margin-top:4px;
+}
+
+/* ══════════════════════════════════════════════════════
+   HSCROLL (company chips on home – kept for fallback)
+══════════════════════════════════════════════════════ */
+.hscroll { display:flex; gap:12px; overflow-x:auto; padding-bottom:8px; margin-bottom:20px; }
+.hscroll::-webkit-scrollbar { display:none; }
+
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <!-- ══ DESKTOP SIDEBAR ══ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <div class="sidebar-logo-mark">
+        <div class="sidebar-logo-box">🏦</div>
+        <div>
+          <div class="sidebar-co-name">SML <em>Group</em></div>
+        </div>
+      </div>
+      <div class="sidebar-tagline">Trusted financial solutions<br>across Kerala since 1995</div>
+      <div class="sidebar-reg-badges">
+        <span class="srb blue">RBI Regulated</span>
+        <span class="srb green">MCA Registered</span>
+        <span class="srb olive">Annual Audit</span>
+      </div>
+    </div>
+
+    <div class="sidebar-nav-section">Main</div>
+    <button class="side-item active" id="side-home" onclick="navTo('home')">
+      <span class="si-icon">🏠</span><span class="si-label">Home</span>
+    </button>
+    <button class="side-item" id="side-products" onclick="navTo('products')">
+      <span class="si-icon">📦</span><span class="si-label">Products</span>
+    </button>
+    <button class="side-item" id="side-calculator" onclick="navTo('calculator')">
+      <span class="si-icon">🧮</span><span class="si-label">Calculator</span>
+    </button>
+
+    <div class="sidebar-nav-section" style="margin-top:8px">Insights</div>
+    <button class="side-item" id="side-learn" onclick="navTo('learn')">
+      <span class="si-icon">📚</span><span class="si-label">Learn</span>
+    </button>
+    <button class="side-item" id="side-trust" onclick="navTo('trust')">
+      <span class="si-icon">🛡️</span><span class="si-label">Why Trust Us</span>
+    </button>
+
+    <div class="sidebar-nav-section" style="margin-top:8px">Tools</div>
+    <button class="side-item" id="side-compare" onclick="navTo('compare')">
+      <span class="si-icon">⚖️</span><span class="si-label">Compare Products</span>
+    </button>
+    <button class="side-item" id="side-faq" onclick="navTo('faq')">
+      <span class="si-icon">❓</span><span class="si-label">FAQ</span>
+    </button>
+
+    <div class="sidebar-footer">
+      <strong>Regulatory Note</strong><br>
+      SML Finance & Vanchinad Finance are RBI-registered NBFCs. Sangeeth Nidhi is an MCA-regulated Nidhi Company. Investments are not DICGC insured.
+    </div>
+  </aside>
+
+  <!-- ══ MAIN AREA ══ -->
+  <div class="main-area" id="main-area">
+
+    <!-- Desktop top bar -->
+    <div class="desk-topbar">
+      <div class="desk-topbar-title" id="desk-topbar-title">Home — SML Group</div>
+      <div class="desk-topbar-right">
+        <button class="tb-btn outline" onclick="navTo('calculator')">🧮 Calculator</button>
+        <button class="tb-btn primary" onclick="navTo('products')">View Products →</button>
+      </div>
+    </div>
+
+    <!-- Mobile top bar -->
+    <div class="mob-topbar">
+      <div class="mob-logo">
+        <div class="mob-logo-box">🏦</div>
+        <div class="mob-logo-name">SML <em>Group</em></div>
+      </div>
+      <div class="mob-topbar-right">
+        <div class="mob-icon-btn" onclick="navTo('calculator')">🧮</div>
+        <div class="mob-icon-btn" onclick="navTo('products')">📦</div>
+      </div>
+    </div>
+
+    <!-- Scrollable content -->
+    <div class="content-wrap" id="content-wrap">
+
+
+      <!-- ══ HOME ══ -->
+      <div class="screen active" id="screen-home">
+        <!-- ── HERO ── -->
+      <div class="hero-banner">
+        <div class="hero-tag"><span class="hero-pulse"></span> Trusted Since 1980</div>
+        <div class="hero-title"><em>SML Group</em> of Companies</div>
+        <div class="hero-sub">A family of three regulated financial institutions — serving investors across Kerala for over 45 years with transparency and trust.</div>
+        <div class="hero-stats-row">
+          <div class="hero-stat"><div class="hero-stat-num">45+</div><div class="hero-stat-label">Yrs Legacy</div></div>
+          <div class="hero-stat"><div class="hero-stat-num">3</div><div class="hero-stat-label">Reg. Entities</div></div>
+          <div class="hero-stat"><div class="hero-stat-num">14.5%</div><div class="hero-stat-label">Max Return</div></div>
+          <div class="hero-stat"><div class="hero-stat-num">RBI</div><div class="hero-stat-label">Regulated</div></div>
+        </div>
+      </div>
+
+      <!-- ── TRUST BADGES ── -->
+      <div class="trust-row" style="margin-bottom:20px">
+        <div class="trust-pill"><div class="trust-pill-dot blue"></div>RBI Regulated NBFCs</div>
+        <div class="trust-pill"><div class="trust-pill-dot green"></div>MCA Registered Nidhi</div>
+        <div class="trust-pill"><div class="trust-pill-dot olive"></div>Annual Statutory Audit</div>
+        <div class="trust-pill"><div class="trust-pill-dot blue"></div>No Hidden Charges</div>
+        <div class="trust-pill"><div class="trust-pill-dot green"></div>Kerala HQ</div>
+      </div>
+
+      <!-- ── OUR THREE COMPANIES ── -->
+      <div class="section-title">Our Companies</div>
+
+      <!-- SML Finance -->
+      <div class="reg-card" style="margin-bottom:10px;border-left:3px solid var(--gold);cursor:pointer" onclick="openCompanyDrawer('SML Finance Ltd')">
+        <div class="reg-card-badge sml">🏦</div>
+        <div class="reg-card-info" style="flex:1">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+            <div class="reg-card-name">SML Finance Ltd</div>
+            <div style="font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:800;color:var(--gold)">14.5%</div>
+          </div>
+          <div class="reg-card-reg sml">NBFC · RBI Registered</div>
+          <div class="reg-card-desc">A Non-Banking Financial Company registered with the Reserve Bank of India. Offers Subordinated Deposits, Doubling Scheme, and Non-Convertible Debentures with returns up to 14.5% p.a.</div>
+          <div class="trust-row" style="margin-top:8px">
+            <div class="trust-pill" style="font-size:0.62rem;padding:3px 9px"><div class="trust-pill-dot blue"></div>SD · NCD · Doubling</div>
+            <div class="trust-pill" style="font-size:0.62rem;padding:3px 9px"><div class="trust-pill-dot blue"></div>Min ₹10,000</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vanchinad Finance -->
+      <div class="reg-card" style="margin-bottom:10px;border-left:3px solid var(--green);cursor:pointer" onclick="openCompanyDrawer('Vanchinad Finance (P) Ltd')">
+        <div class="reg-card-badge van">🌿</div>
+        <div class="reg-card-info" style="flex:1">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+            <div class="reg-card-name">Vanchinad Finance (P) Ltd</div>
+            <div style="font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:800;color:var(--green)">14%</div>
+          </div>
+          <div class="reg-card-reg van">NBFC · RBI Registered</div>
+          <div class="reg-card-desc">An RBI-regulated NBFC with a strong track record in Kerala. Offers competitive Subordinated Deposits, Doubling Scheme, and NCDs with flexible premature closure options.</div>
+          <div class="trust-row" style="margin-top:8px">
+            <div class="trust-pill" style="font-size:0.62rem;padding:3px 9px"><div class="trust-pill-dot green"></div>SD · NCD · Doubling</div>
+            <div class="trust-pill" style="font-size:0.62rem;padding:3px 9px"><div class="trust-pill-dot green"></div>Min ₹10,000</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sangeeth Nidhi -->
+      <div class="reg-card" style="margin-bottom:20px;border-left:3px solid var(--purple);cursor:pointer" onclick="openCompanyDrawer('SANGEETH NIDHI')">
+        <div class="reg-card-badge san">🎵</div>
+        <div class="reg-card-info" style="flex:1">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+            <div class="reg-card-name">Sangeeth Nidhi Ltd</div>
+            <div style="font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:800;color:var(--purple)">12.5%</div>
+          </div>
+          <div class="reg-card-reg san">Nidhi Company · MCA Regulated</div>
+          <div class="reg-card-desc">A Nidhi Company under the Companies Act 2013, regulated by the Ministry of Corporate Affairs. A mutual benefit society — member deposits are used to extend loans to members.</div>
+          <div class="trust-row" style="margin-top:8px">
+            <div class="trust-pill" style="font-size:0.62rem;padding:3px 9px"><div class="trust-pill-dot olive"></div>Fixed Deposits</div>
+            <div class="trust-pill" style="font-size:0.62rem;padding:3px 9px"><div class="trust-pill-dot olive"></div>Min ₹10,000</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── REGULATORY SAFEGUARDS ── -->
+      <div class="section-title">Regulatory Safeguards</div>
+      <div class="info-card" style="margin-bottom:20px">
+        <div class="info-card-body">
+          <p>✅ <strong>RBI Oversight (NBFCs):</strong> SML Finance and Vanchinad Finance operate under the RBI's NBFC regulatory framework — including capital adequacy ratios, credit risk norms, and annual statutory audits.</p>
+          <p>✅ <strong>MCA Oversight (Nidhi):</strong> Sangeeth Nidhi is regulated by the Ministry of Corporate Affairs. Nidhi companies must maintain a Net Owned Fund of ₹10 Lakhs minimum and a strict 1:20 NOF-to-deposit ratio.</p>
+          <p>✅ <strong>Annual Audits:</strong> All three entities undergo annual statutory audits by independent chartered accountants.</p>
+          <p>✅ <strong>Transparent Terms:</strong> Interest rates, tenure, and closure terms are disclosed upfront. No hidden charges on any product.</p>
+          <p>⚠️ <strong>Note:</strong> These products are not covered under DICGC deposit insurance. Invest amounts you are comfortable holding for the full tenure.</p>
+        </div>
+      </div>
+
+      <!-- ── TOP RATES ── -->
+      <div class="section-title">Top Rates Today <span class="see-all" onclick="navTo('products')">All Products →</span></div>
+      <div class="rate-cards" style="margin-bottom:20px">
+        <div class="rate-card" onclick="launchCalc('SML Finance Ltd','SD 5.5 Year')">
+          <div class="rate-card-label">SML Finance · SD</div>
+          <div class="rate-card-val gold">14.5%</div>
+          <div class="rate-card-sub">Annual · 5.5 yrs</div>
+          <div class="rate-card-badge badge-gold">Best Annual</div>
+        </div>
+        <div class="rate-card" onclick="launchCalc('Vanchinad Finance (P) Ltd','Non-Convertible Debentures (NCD)')">
+          <div class="rate-card-label">Vanchinad · NCD</div>
+          <div class="rate-card-val" style="color:var(--green)">13.5%</div>
+          <div class="rate-card-sub">Annual · 10 yrs</div>
+          <div class="rate-card-badge" style="background:var(--green-dim);color:var(--green)">Flexible Exit</div>
+        </div>
+        <div class="rate-card" onclick="launchCalc('SML Finance Ltd','Non-Convertible Debentures (NCD)')">
+          <div class="rate-card-label">SML Finance · NCD</div>
+          <div class="rate-card-val gold">13%</div>
+          <div class="rate-card-sub">Monthly · 10 yrs</div>
+          <div class="rate-card-badge badge-gold">Monthly Income</div>
+        </div>
+        <div class="rate-card" onclick="launchCalc('SANGEETH NIDHI','Sangeeth Nidhi Deposits')">
+          <div class="rate-card-label">Sangeeth Nidhi</div>
+          <div class="rate-card-val" style="color:var(--purple)">12.5%</div>
+          <div class="rate-card-sub">Annual · 5 yr premium</div>
+          <div class="rate-card-badge" style="background:var(--purple-dim);color:var(--purple)">Nidhi</div>
+        </div>
+      </div>
+
+      <!-- ── VS BANK ── -->
+      <div class="section-title">Why Not Just a Bank FD? <span class="see-all" onclick="navTo('learn')">Details →</span></div>
+      <div class="bank-compare-grid" style="margin-bottom:10px">
+        <div class="bank-card sbi">
+          <div class="bank-card-logo">🏛️ SBI FD</div>
+          <div class="bank-card-rate">7.0%</div>
+          <div class="bank-card-sub">Best rate · 400 days</div>
+        </div>
+        <div class="bank-card hdfc">
+          <div class="bank-card-logo">🔷 HDFC FD</div>
+          <div class="bank-card-rate">7.4%</div>
+          <div class="bank-card-sub">Best rate · 55 months</div>
+        </div>
+      </div>
+      <div class="vs-strip" style="margin-bottom:20px">
+        <div class="vs-strip-icon">📈</div>
+        <div class="vs-strip-text">
+          <div class="vs-strip-title">SML Group offers up to 14.5%</div>
+          <div class="vs-strip-sub">RBI-regulated · nearly 2× the best bank rate</div>
+        </div>
+        <div class="vs-strip-btn" onclick="navTo('learn')">Compare →</div>
+      </div>
+
+      <!-- ── QUICK ACTIONS ── -->
+      <div class="section-title">Explore</div>
+      <div class="quick-grid" style="margin-bottom:8px">
+        <div class="quick-btn" onclick="navTo('products')">
+          <div class="quick-btn-icon">📦</div>
+          <div class="quick-btn-label">Products</div>
+        </div>
+        <div class="quick-btn" onclick="navTo('calculator')">
+          <div class="quick-btn-icon">🧮</div>
+          <div class="quick-btn-label">Calculate</div>
+        </div>
+        <div class="quick-btn" onclick="navTo('learn')">
+          <div class="quick-btn-icon">📚</div>
+          <div class="quick-btn-label">Learn</div>
+        </div>
+        <div class="quick-btn" onclick="navTo('compare')">
+          <div class="quick-btn-icon">⚖️</div>
+          <div class="quick-btn-label">Compare</div>
+        </div>
+      </div>
+      </div><!-- /screen-home -->
+
+      <!-- ══ PRODUCTS ══ -->
+<!-- ══ PRODUCTS ══ -->
+    <div class="screen" id="screen-products">
+      <button class="back-btn" onclick="navTo('home')">← Back to Home</button>
+      <div class="section-title" style="margin-bottom:12px">All Products</div>
+      <div class="pill-filters" id="pill-filters">
+        <button class="pill active" onclick="filterProds('all',this)">All</button>
+        <button class="pill" onclick="filterProds('SML Finance Ltd',this)">SML Finance</button>
+        <button class="pill" onclick="filterProds('Vanchinad Finance (P) Ltd',this)">Vanchinad</button>
+        <button class="pill" onclick="filterProds('SANGEETH NIDHI',this)">Sangeeth Nidhi</button>
+        <button class="pill" onclick="filterProds('Special Calculators',this)">Special</button>
+      </div>
+      <div class="prod-list" id="prod-list"></div>
+    </div>
+
+    <!-- ══ CALCULATOR ══ -->
+    <div class="screen" id="screen-calculator">
+      <button class="back-btn" onclick="navTo('home')">← Back to Home</button>
+
+      <!-- ══ SMART PRODUCT FINDER ══ -->
+<!-- ══ SMART PRODUCT FINDER ══ -->
+      <div class="quiz-card" id="quiz-card">
+
+        <!-- progress dots -->
+        <div class="quiz-steps">
+          <div class="quiz-step-dot active" id="qdot-0"></div>
+          <div class="quiz-step-dot" id="qdot-1"></div>
+          <div class="quiz-step-dot" id="qdot-2"></div>
+          <div class="quiz-step-dot" id="qdot-3"></div>
+          <div class="quiz-step-dot" id="qdot-4"></div>
+        </div>
+
+        <!-- Q0: Age -->
+        <div class="quiz-header">
+          <div class="quiz-icon">🔍</div>
+          <div>
+            <div class="quiz-title">Find Your Best Product</div>
+            <div class="quiz-sub">5 quick questions · personalised recommendation</div>
+          </div>
+        </div>
+
+        <div id="quiz-form">
+          <div class="quiz-q" id="quiz-question">How old are you?</div>
+
+          <!-- age input (step 0) -->
+          <div id="quiz-age-wrap">
+            <div class="quiz-age-row">
+              <input class="quiz-age-input" id="quiz-age" type="number" min="18" max="90" placeholder="Enter your age" oninput="quizAgeInput()">
+            </div>
+          </div>
+
+          <!-- option buttons (steps 1–4) -->
+          <div class="quiz-opts" id="quiz-opts" style="display:none"></div>
+
+          <div class="quiz-nav">
+            <button class="quiz-back-btn" id="quiz-back" onclick="quizBack()" style="display:none">← Back</button>
+            <button class="quiz-next-btn" id="quiz-next" onclick="quizNext()">Next →</button>
+          </div>
+        </div>
+
+        <!-- Result -->
+        <div class="quiz-result" id="quiz-result">
+          <div class="quiz-rec-head">
+            <div class="quiz-rec-title">✅ Your Best Matches</div>
+            <div class="quiz-rec-sub">Based on your profile — tap a card to calculate returns</div>
+          </div>
+          <div id="quiz-rec-list"></div>
+          <div class="quiz-restart-btn" onclick="quizRestart()">↺ Start Over</div>
+        </div>
+
+      </div>
+
+      <div class="section-title" style="margin-bottom:16px">Returns Calculator</div>
+      <div class="calc-steps">
+        <!-- Step 1 Company -->
+        <div class="calc-group">
+          <div class="calc-group-label"><div class="step-num">1</div> Select Company</div>
+          <select class="sel" id="calc-company" onchange="onCalcCo()">
+            <option value="">— Choose a company —</option>
+            <option>SML Finance Ltd</option>
+            <option>Vanchinad Finance (P) Ltd</option>
+            <option>SANGEETH NIDHI</option>
+            <option>Special Calculators</option>
+          </select>
+        </div>
+        <!-- Step 2 Product -->
+        <div class="calc-group">
+          <div class="calc-group-label"><div class="step-num">2</div> Select Product</div>
+          <select class="sel" id="calc-product" onchange="onCalcProd()" disabled>
+            <option value="">— Choose a product —</option>
+          </select>
+        </div>
+        <!-- Step 3 Tier -->
+        <div class="calc-group hidden" id="tier-group">
+          <div class="calc-group-label"><div class="step-num">3</div> Select Tier / Option</div>
+          <div class="tier-options" id="tier-options"></div>
+        </div>
+        <!-- Step 4 Amount -->
+        <div class="calc-group" id="amt-group">
+          <div class="calc-group-label" id="amt-step-lbl"><div class="step-num">3</div> <span id="amt-step-title">Enter Amount</span></div>
+          <div class="amt-wrap">
+            <span class="amt-prefix">₹</span>
+            <input type="number" class="amt-input" id="calc-amount" placeholder="0" oninput="runCalc()" min="0" inputmode="numeric">
+          </div>
+          <div class="amt-hint" id="amt-hint">Minimum investment: ₹10,000</div>
+          <div class="quick-amts">
+            <button class="qa-btn" onclick="setAmt(10000)">₹10K</button>
+            <button class="qa-btn" onclick="setAmt(50000)">₹50K</button>
+            <button class="qa-btn" onclick="setAmt(100000)">₹1L</button>
+            <button class="qa-btn" onclick="setAmt(500000)">₹5L</button>
+            <button class="qa-btn" onclick="setAmt(1500000)">₹15L</button>
+            <button class="qa-btn" onclick="setAmt(2500000)">₹25L</button>
+          </div>
+        </div>
+        <!-- Period -->
+        <div class="calc-group hidden" id="period-group">
+          <div class="calc-group-label" id="period-step-lbl"><div class="step-num" id="period-step-num">4</div> Investment Period</div>
+          <div class="period-row">
+            <input type="number" class="period-input" id="calc-period" placeholder="e.g. 5" oninput="runCalc()" min="1" inputmode="numeric">
+            <span class="period-unit">Years</span>
+          </div>
+          <div class="amt-hint" id="period-hint"></div>
+        </div>
+      </div>
+      <button class="calc-btn" onclick="runCalc()">✦ Calculate My Returns</button>
+      <div class="results-box" id="results-box">
+        <div class="results-head">
+          <div class="results-head-title">Your Returns</div>
+          <div class="results-head-sub" id="results-sub-text">—</div>
+        </div>
+        <div class="results-body" id="results-body"></div>
+      </div>
+    </div>
+
+
+    <!-- ══ LEARN ══ -->
+    <div class="screen" id="screen-learn">
+      <button class="back-btn" onclick="navTo('home')">← Back to Home</button>
+      <div class="section-title" style="margin-bottom:16px">Learn &amp; Compare</div>
+      <div style="display:flex;gap:8px;margin-bottom:16px">
+        <button onclick="navTo('compare')" style="flex:1;padding:10px;border-radius:12px;background:var(--gold);color:#fff;border:none;font-family:'DM Sans',sans-serif;font-size:0.72rem;font-weight:700;cursor:pointer">⚖️ Compare Products</button>
+        <button onclick="navTo('faq')" style="flex:1;padding:10px;border-radius:12px;background:var(--card);color:var(--text);border:1px solid var(--border2);font-family:'DM Sans',sans-serif;font-size:0.72rem;font-weight:700;cursor:pointer">❓ FAQs</button>
+      </div>
+
+      <!-- Bank rate comparison table -->
+      <div class="info-card" style="margin-bottom:12px">
+        <div class="info-card-head">
+          <div class="info-card-icon blue">🏦</div>
+          <div>
+            <div class="info-card-title">Bank FD vs SML Group</div>
+            <span class="info-card-badge blue">Rate Comparison</span>
+          </div>
+        </div>
+        <div class="bank-compare-grid" style="margin-bottom:10px">
+          <div class="bank-card sbi">
+            <div class="bank-card-logo">🏛️ SBI FD</div>
+            <div class="bank-card-rate">7.0%</div>
+            <div class="bank-card-sub">Best rate · 400 days</div>
+          </div>
+          <div class="bank-card hdfc">
+            <div class="bank-card-logo">🔷 HDFC FD</div>
+            <div class="bank-card-rate">7.4%</div>
+            <div class="bank-card-sub">Best rate · 55 months</div>
+          </div>
+        </div>
+        <div class="info-card-body">
+          <p><strong>SBI</strong> offers up to 7.0% on Fixed Deposits (400-day tenure as of 2025). Senior citizens get 0.5% extra. Interest is compounded quarterly.</p>
+          <p><strong>HDFC Bank</strong> offers up to 7.4% on select tenures around 55 months. Senior citizens get an additional 0.25–0.50%.</p>
+        </div>
+        <div class="info-highlight-row">
+          <div class="info-highlight-item">
+            <div class="info-highlight-num">7.4%</div>
+            <div class="info-highlight-lbl">Best Bank Rate</div>
+          </div>
+          <div class="info-highlight-item">
+            <div class="info-highlight-num" style="color:var(--green)">14.5%</div>
+            <div class="info-highlight-lbl">SML Max Rate</div>
+          </div>
+          <div class="info-highlight-item">
+            <div class="info-highlight-num" style="color:var(--purple)">+7.1%</div>
+            <div class="info-highlight-lbl">Extra Return</div>
+          </div>
+        </div>
+        <div class="info-card-body" style="margin-top:8px">
+          <p>On ₹5 Lakhs over 5.5 years, an SML Finance SD at 14.5% p.a. annual payout yields <strong>₹3,97,500</strong> in interest — vs approx ₹2,03,000 from a bank FD at 7.4%. That's nearly <strong>double the income</strong>.</p>
+        </div>
+      </div>
+
+      <!-- RD Explained -->
+      <div class="info-card" style="margin-bottom:12px">
+        <div class="info-card-head">
+          <div class="info-card-icon green">📅</div>
+          <div>
+            <div class="info-card-title">Recurring Deposit (RD)</div>
+            <span class="info-card-badge green">Monthly Saving</span>
+          </div>
+        </div>
+        <div class="info-card-body">
+          <p>A <strong>Recurring Deposit</strong> lets you invest a fixed amount every month and earn compounding interest. It's perfect for salaried individuals who want to build wealth gradually without locking in a large sum upfront.</p>
+          <p><strong>How it works:</strong> Each monthly instalment earns interest from the date of deposit until maturity. The formula used is the standard annuity formula: <em>M = R × [(1+r)ⁿ – 1] / r × (1+r)</em>, where R = monthly deposit, r = monthly rate, n = months.</p>
+          <p><strong>SML Group RD offers 10–12% p.a.</strong> depending on tenure (1 yr: 10%, 2 yrs: 11%, 3–4 yrs: 12%), compounded monthly — significantly higher than bank RDs (SBI: 6.5–7.0%, HDFC: 7.0–7.5%).</p>
+          <p>For example, depositing <strong>₹5,000/month for 3 years</strong> at 12% p.a. yields a maturity value of approx <strong>₹2,15,000</strong> — vs ₹1,98,000 from a bank RD at 7%.</p>
+        </div>
+        <div class="trust-row">
+          <div class="trust-pill"><div class="trust-pill-dot green"></div>Min ₹1,000/month</div>
+          <div class="trust-pill"><div class="trust-pill-dot green"></div>1–5 Year tenure</div>
+          <div class="trust-pill"><div class="trust-pill-dot green"></div>10–12% p.a.</div>
+        </div>
+        <div style="margin-top:12px">
+          <button class="vs-strip-btn" style="background:var(--gold);border-color:var(--gold);color:#fff;padding:9px 18px;font-size:0.75rem" onclick="navTo('calculator');launchCalc('Special Calculators','Recurring Deposit (RD)')">🧮 Try RD Calculator</button>
+        </div>
+      </div>
+
+      <!-- Debentures / NCD Explained -->
+      <div class="info-card" style="margin-bottom:12px">
+        <div class="info-card-head">
+          <div class="info-card-icon olive">📜</div>
+          <div>
+            <div class="info-card-title">Non-Convertible Debentures (NCD)</div>
+            <span class="info-card-badge olive">Debt Instrument</span>
+          </div>
+        </div>
+        <div class="info-card-body">
+          <p>A <strong>Non-Convertible Debenture (NCD)</strong> is a debt security issued by a company to raise funds from the public. Unlike convertible debentures, NCDs <em>cannot</em> be converted into equity shares — you receive fixed interest and your principal back at maturity.</p>
+          <p><strong>Why NCDs?</strong> They are governed by SEBI/RBI regulations, backed by the company's assets, and offer higher returns than bank FDs. They are particularly suitable for investors seeking long-term, predictable income.</p>
+          <p><strong>SML Finance NCD:</strong> 10-year tenure · 12.5–13% monthly payout · Min ₹3 Lakhs. Premature closure allowed after 1 year with reducing penalty (nil after 3 years).</p>
+          <p><strong>Vanchinad Finance NCD:</strong> 10-year tenure · 12.5–13.5% · Min ₹5 Lakhs. Same flexible exit structure.</p>
+          <p>Interest income is taxable under "Income from Other Sources" as per your slab. TDS may apply.</p>
+        </div>
+        <div class="trust-row">
+          <div class="trust-pill"><div class="trust-pill-dot blue"></div>RBI Regulated</div>
+          <div class="trust-pill"><div class="trust-pill-dot blue"></div>10-year tenure</div>
+          <div class="trust-pill"><div class="trust-pill-dot blue"></div>Exit after 1 yr</div>
+          <div class="trust-pill"><div class="trust-pill-dot olive"></div>Up to 13.5%</div>
+        </div>
+      </div>
+
+      <!-- Subordinated Deposit -->
+      <div class="info-card" style="margin-bottom:12px">
+        <div class="info-card-head">
+          <div class="info-card-icon blue">💰</div>
+          <div>
+            <div class="info-card-title">Subordinated Deposit (SD)</div>
+            <span class="info-card-badge blue">Fixed Deposit</span>
+          </div>
+        </div>
+        <div class="info-card-body">
+          <p>A <strong>Subordinated Deposit</strong> is a fixed-term instrument offered by RBI-registered NBFCs. You deposit a lump sum and earn fixed interest paid monthly or annually over 5.5 years.</p>
+          <p>It is called "subordinated" because, in a hypothetical liquidation scenario, these depositors are repaid after secured creditors — in exchange for which they earn a <strong>significantly higher interest rate</strong> than bank FDs.</p>
+          <p>No premature closure is permitted. At maturity, your full principal plus accumulated interest (annual payout) is returned. The monthly payout option provides a steady income stream throughout the tenure.</p>
+        </div>
+        <div class="trust-row">
+          <div class="trust-pill"><div class="trust-pill-dot blue"></div>5.5 Year tenure</div>
+          <div class="trust-pill"><div class="trust-pill-dot blue"></div>Up to 14.5% p.a.</div>
+          <div class="trust-pill"><div class="trust-pill-dot blue"></div>Monthly/Annual payout</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ══ TRUST / CREDIBILITY ══ -->
+    <div class="screen" id="screen-trust">
+      <button class="back-btn" onclick="navTo('home')">← Back to Home</button>
+      <div class="cred-hero">
+        <div class="cred-hero-title">🛡️ Why Trust SML Group?</div>
+        <div class="cred-hero-sub">Regulated, audited, and serving investors across Kerala since 1980</div>
+      </div>
+
+      <div class="milestone-row">
+        <div class="milestone-item"><div class="milestone-num">45+</div><div class="milestone-lbl">Years in Business</div></div>
+        <div class="milestone-item"><div class="milestone-num">3</div><div class="milestone-lbl">Regulated Entities</div></div>
+        <div class="milestone-item"><div class="milestone-num">₹100Cr+</div><div class="milestone-lbl">Assets Under Mgmt</div></div>
+      </div>
+
+      <div class="section-title" style="margin-bottom:12px">Our Regulated Companies</div>
+      <div class="reg-cards">
+        <div class="reg-card">
+          <div class="reg-card-badge sml">🏦</div>
+          <div class="reg-card-info">
+            <div class="reg-card-name">SML Finance Ltd</div>
+            <div class="reg-card-reg sml">NBFC · RBI Registered</div>
+            <div class="reg-card-desc">A Non-Banking Financial Company registered with the Reserve Bank of India. Subject to RBI's prudential norms, capital adequacy standards, and annual audit requirements. Offers SD, Doubling Scheme, and NCD products.</div>
+          </div>
+        </div>
+        <div class="reg-card">
+          <div class="reg-card-badge van">🌿</div>
+          <div class="reg-card-info">
+            <div class="reg-card-name">Vanchinad Finance (P) Ltd</div>
+            <div class="reg-card-reg van">NBFC · RBI Registered</div>
+            <div class="reg-card-desc">An RBI-regulated NBFC with a strong track record in Kerala. Offers competitive SD, Doubling, and NCD products with flexible exit options. All operations are governed by RBI's NBFC master directions.</div>
+          </div>
+        </div>
+        <div class="reg-card">
+          <div class="reg-card-badge san">🎵</div>
+          <div class="reg-card-info">
+            <div class="reg-card-name">Sangeeth Nidhi Ltd</div>
+            <div class="reg-card-reg san">Nidhi Company · MCA Regulated</div>
+            <div class="reg-card-desc">A Nidhi Company incorporated under Section 406 of the Companies Act 2013, regulated by the Ministry of Corporate Affairs (MCA). Nidhi companies are mutual benefit societies — member deposits fund member loans.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-title" style="margin-bottom:12px">Regulatory Safeguards</div>
+      <div class="info-card" style="margin-bottom:12px">
+        <div class="info-card-body">
+          <p>✅ <strong>RBI Oversight (NBFCs):</strong> SML Finance and Vanchinad Finance operate under the RBI's NBFC regulatory framework — including mandatory capital adequacy ratios, credit risk norms, and annual statutory audits.</p>
+          <p>✅ <strong>MCA Oversight (Nidhi):</strong> Sangeeth Nidhi is regulated by the Ministry of Corporate Affairs. Nidhi companies must maintain a Net Owned Fund of ₹10 Lakhs minimum and a 1:20 NOF-to-deposit ratio.</p>
+          <p>✅ <strong>Annual Audits:</strong> All three entities are subject to annual statutory audits by independent chartered accountants.</p>
+          <p>✅ <strong>Transparent Operations:</strong> Interest rates, tenure, and terms are disclosed upfront. No hidden charges on any product.</p>
+          <p>⚠️ <strong>Important:</strong> These products are not covered under DICGC deposit insurance (which covers bank deposits up to ₹5 Lakhs). Investors should diversify and invest amounts they are comfortable holding for the full tenure.</p>
+        </div>
+      </div>
+
+      <div class="section-title" style="margin-bottom:12px">Key Indicators</div>
+      <div class="trust-row" style="margin-bottom:24px">
+        <div class="trust-pill"><div class="trust-pill-dot blue"></div>Est. 1980</div>
+        <div class="trust-pill"><div class="trust-pill-dot blue"></div>RBI Compliant</div>
+        <div class="trust-pill"><div class="trust-pill-dot green"></div>MCA Compliant</div>
+        <div class="trust-pill"><div class="trust-pill-dot green"></div>Annual Audit</div>
+        <div class="trust-pill"><div class="trust-pill-dot olive"></div>No Hidden Fees</div>
+        <div class="trust-pill"><div class="trust-pill-dot olive"></div>Kerala Based</div>
+      </div>
+    </div>
+
+    <!-- ══ COMPARE ══ -->
+    <div class="screen" id="screen-compare">
+      <button class="back-btn" onclick="navTo('learn')">← Back to Learn</button>
+      <div class="section-title" style="margin-bottom:14px">Compare Products</div>
+      <div class="cmp-amt-box">
+        <div class="cmp-label">Comparison Amount</div>
+        <div class="amt-wrap">
+          <span class="amt-prefix">₹</span>
+          <input type="number" class="amt-input" id="cmp-amount" placeholder="e.g. 100000" oninput="runCompare()" inputmode="numeric">
+        </div>
+        <div class="amt-hint mt8">Select up to 3 products below, then enter amount</div>
+      </div>
+      <div class="cmp-label mb16">Select Products (max 3)</div>
+      <div class="cmp-sel-grid" id="cmp-grid"></div>
+      <button class="cmp-run-btn" onclick="runCompare()">Compare Selected →</button>
+      <div class="cmp-table-wrap" id="cmp-table-wrap">
+        <table class="cmp-table" id="cmp-table"></table>
+      </div>
+    </div>
+
+    <!-- ══ FAQ ══ -->
+    <div class="screen" id="screen-faq">
+      <button class="back-btn" onclick="navTo('learn')">← Back to Learn</button>
+      <div class="section-title" style="margin-bottom:16px">FAQ</div>
+      <div class="faq-items" id="faq-items"></div>
+    </div>
+
+    </div><!-- /content-wrap -->
+
+    <!-- Mobile bottom nav -->
+    <nav class="mob-nav">
+      <button class="mob-nav-item active" id="mnav-home" onclick="navTo('home')">
+        <span class="mob-nav-icon">🏠</span>
+        <span class="mob-nav-label">Home</span>
+      </button>
+      <button class="mob-nav-item" id="mnav-products" onclick="navTo('products')">
+        <span class="mob-nav-icon">📦</span>
+        <span class="mob-nav-label">Products</span>
+      </button>
+      <button class="mob-nav-item" id="mnav-calculator" onclick="navTo('calculator')">
+        <span class="mob-nav-icon">🧮</span>
+        <span class="mob-nav-label">Calculate</span>
+      </button>
+      <button class="mob-nav-item" id="mnav-learn" onclick="navTo('learn')">
+        <span class="mob-nav-icon">📚</span>
+        <span class="mob-nav-label">Learn</span>
+      </button>
+      <button class="mob-nav-item" id="mnav-trust" onclick="navTo('trust')">
+        <span class="mob-nav-icon">🛡️</span>
+        <span class="mob-nav-label">Trust</span>
+      </button>
+    </nav>
+
+  </div><!-- /main-area -->
+
+</div><!-- /shell -->
+
+<!-- Drawer -->
+<div class="drawer-overlay" id="drawer-overlay" onclick="closeDrawer(event)">
+  <div class="drawer-content">
+    <div class="drawer-handle"></div>
+    <div class="drawer-company-tag" id="drawer-tag"></div>
+    <div class="drawer-title" id="drawer-title"></div>
+    <div id="drawer-body"></div>
+  </div>
+</div>
+
+<script>
+/* ════════════════════════════════════
+   DATA  (min ₹10,000 everywhere)
+════════════════════════════════════ */
+const DATA = {
+  "SML Finance Ltd": {
+    "SD 5.5 Year": [
+      { monthly:"12.5%", yearly:"13.0%", period:"5.5 YEARS", remarks:"₹10,000 to less than ₹5 Lakhs", generalRemark:"No Premature Closing Allowed", type:"SD", minAmt:10000, maxAmt:499999 },
+      { monthly:"13.0%", yearly:"13.5%", period:"5.5 YEARS", remarks:"₹5 Lakhs to less than ₹25 Lakhs", generalRemark:"No Premature Closing Allowed", type:"SD", minAmt:500000, maxAmt:2499999 },
+      { monthly:"14.0%", yearly:"14.5%", period:"5.5 YEARS", remarks:"₹25 Lakhs & above", generalRemark:"No Premature Closing Allowed", type:"SD", minAmt:2500000, maxAmt:Infinity }
+    ],
+    "Doubling Scheme": [
+      { period:"70 Months", remarks:"₹10,000 & Above", doublingRemark:"Your investment doubles at maturity.", generalRemark:"No Premature Closing Allowed", type:"Doubling", minAmt:10000 }
+    ],
+    "Non-Convertible Debentures (NCD)": [
+      { monthly:"12.5%", yearly:"Not Available", period:"10 YEARS", remarks:"₹3 Lakhs to less than ₹15 Lakhs", type:"NCD", minAmt:300000, maxAmt:1499999,
+        closureRemark:"Closure allowed after 1 year.",
+        closureTerms:[{period:"1–2 years",cut:"1% penalty"},{period:"2–3 years",cut:"0.5% penalty"},{period:"After 3 years",cut:"No penalty"},{period:"3 yrs (between anniversaries)",cut:"Eff. rate: 9%"}]},
+      { monthly:"13%", yearly:"Not Available", period:"10 YEARS", remarks:"₹15 Lakhs & above", type:"NCD", minAmt:1500000, maxAmt:Infinity,
+        closureRemark:"Closure allowed after 1 year.",
+        closureTerms:[{period:"1–2 years",cut:"1% penalty"},{period:"2–3 years",cut:"0.5% penalty"},{period:"After 3 years",cut:"No penalty"},{period:"3 yrs (between anniversaries)",cut:"Eff. rate: 9%"}]}
+    ]
+  },
+  "Vanchinad Finance (P) Ltd": {
+    "SD 5.5 Year": [
+      { monthly:"12%", yearly:"12.50%", period:"5.5 YEARS", remarks:"₹10,000 to less than ₹5 Lakhs", generalRemark:"No Premature Closing Allowed", type:"SD", minAmt:10000, maxAmt:499999 },
+      { monthly:"12.50%", yearly:"13%", period:"5.5 YEARS", remarks:"₹5 Lakhs to less than ₹25 Lakhs", generalRemark:"No Premature Closing Allowed", type:"SD", minAmt:500000, maxAmt:2499999 },
+      { monthly:"13.50%", yearly:"14%", period:"5.5 YEARS", remarks:"₹25 Lakhs & above", generalRemark:"No Premature Closing Allowed", type:"SD", minAmt:2500000, maxAmt:Infinity }
+    ],
+    "Sub-ordinated Debt Doubling Scheme": [
+      { period:"70 Months", remarks:"₹10,000 & Above", doublingRemark:"Your investment doubles at maturity.", generalRemark:"No Premature Closing Allowed", type:"Doubling", minAmt:10000 }
+    ],
+    "Non-Convertible Debentures (NCD)": [
+      { monthly:"12.50%", yearly:"13.00%", period:"10 YEARS", remarks:"₹5 Lakhs to less than ₹15 Lakhs", type:"NCD", minAmt:500000, maxAmt:1499999,
+        closureRemark:"Closure allowed after 1 year.",
+        closureTerms:[{period:"1–2 years",cut:"2% penalty"},{period:"2–3 years",cut:"1% penalty"},{period:"After 3 years",cut:"No penalty"},{period:"3 yrs (between anniversaries)",cut:"Eff. rate: 9%"}]},
+      { monthly:"13.00%", yearly:"13.50%", period:"10 YEARS", remarks:"₹15 Lakhs & above", type:"NCD", minAmt:1500000, maxAmt:Infinity,
+        closureRemark:"Closure allowed after 1 year.",
+        closureTerms:[{period:"1–2 years",cut:"2% penalty"},{period:"2–3 years",cut:"1% penalty"},{period:"After 3 years",cut:"No penalty"},{period:"3 yrs (between anniversaries)",cut:"Eff. rate: 9%"}]}
+    ]
+  },
+  "SANGEETH NIDHI": {
+    "Sangeeth Nidhi Deposits": [
+      { period:"6 Months to <1 Year", yearly:"9%", remarks:"₹10,000 and above", type:"SD", minAmt:10000, minPeriod:0.5, maxPeriod:0.9, defaultPeriod:0.5 },
+      { period:"1 Year to <3 Years", monthly:"10.00%", yearly:"10.50%", remarks:"₹10,000 and above", type:"SD", minAmt:10000, minPeriod:1, maxPeriod:2, defaultPeriod:1 },
+      { period:"3 Years to 5 Years", monthly:"10.50%", yearly:"11.00%", remarks:"₹10,000 and above", type:"SD", minAmt:10000, minPeriod:3, maxPeriod:5, defaultPeriod:3 },
+      { period:"5 Years (Premium)", monthly:"12%", yearly:"12.50%", remarks:"₹5 Lakhs and above", type:"SD", minAmt:500000, minPeriod:5, maxPeriod:5, defaultPeriod:5 }
+    ]
+  },
+  "Special Calculators": {
+    "Recurring Deposit (RD)": [
+     { type:"RD", ratePA:10.0, minAmount:1000, period:"1 Year",  remarks:"₹1,000 or more per month", minPeriod:1, maxPeriod:1 },
+{ type:"RD", ratePA:11.0, minAmount:1000, period:"2 Years", remarks:"₹1,000 or more per month", minPeriod:2, maxPeriod:2 },
+{ type:"RD", ratePA:12.0, minAmount:1000, period:"3 Years", remarks:"₹1,000 or more per month", minPeriod:3, maxPeriod:3 },
+{ type:"RD", ratePA:12.0, minAmount:1000, period:"4 Years", remarks:"₹1,000 or more per month", minPeriod:4, maxPeriod:4 }
+    ]
+  }
+};
+
+const CO_CLS  = {"SML Finance Ltd":"sml","Vanchinad Finance (P) Ltd":"van","SANGEETH NIDHI":"san","Special Calculators":"special"};
+const CO_ICON = {"SML Finance Ltd":"🏦","Vanchinad Finance (P) Ltd":"🌿","SANGEETH NIDHI":"🎵","Special Calculators":"🧮"};
+const CO_COLOR= {"SML Finance Ltd":"gold","Vanchinad Finance (P) Ltd":"green","SANGEETH NIDHI":"olive","Special Calculators":"blue"};
+
+const fmt = n => Math.round(n).toLocaleString('en-IN');
+const pct = s => s && s !== 'Not Available' ? parseFloat(s.replace('%','').trim())/100 : null;
+
+/* ════════════════════════════════════
+   NAVIGATION
+════════════════════════════════════ */
+function navTo(id) {
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.mob-nav-item').forEach(n=>n.classList.remove('active'));
+  document.querySelectorAll('.side-item').forEach(n=>n.classList.remove('active'));
+  const screen = document.getElementById('screen-'+id);
+  if(screen) screen.classList.add('active');
+  const navMap = {home:'home',products:'products',calculator:'calculator',compare:'compare',faq:'faq',learn:'learn',trust:'trust'};
+  const navId = navMap[id]||id;
+  // mob nav: compare/faq fall back to learn tab
+  const mobFallback = {compare:'learn',faq:'learn'};
+  const mobId = mobFallback[navId] || navId;
+  const mob = document.getElementById('mnav-'+mobId);
+  if(mob) mob.classList.add('active');
+  const side = document.getElementById('side-'+navId);
+  if(side) side.classList.add('active');
+  const wrap = document.querySelector('.content-wrap');
+  if(wrap) wrap.scrollTo(0,0);
+  if(id==='products') buildProds('all');
+  if(id==='compare') buildCmpGrid();
+  if(id==='faq') buildFaq();
+}
+
+/* ════════════════════════════════════
+   HOME DRAWER
+════════════════════════════════════ */
+function openCompanyDrawer(co) {
+  const products = DATA[co];
+  const tag = document.getElementById('drawer-tag');
+  tag.textContent = CO_CLS[co]?.toUpperCase()+' · NBFC';
+  tag.className = 'drawer-company-tag ' + (CO_CLS[co]||'');
+  document.getElementById('drawer-title').textContent = co;
+  let html = '';
+  for(const [pName,pList] of Object.entries(products)) {
+    html += `<div class="drawer-section"><div class="drawer-section-title">${pName}</div><div class="feat-rows">`;
+    pList.forEach(d=>{
+      const isDb = d.type==='Doubling';
+      const isRD = d.type==='RD';
+      const rate = isDb ? 'Doubles on maturity (70 months)' : isRD ? `Up to ${d.ratePA}% p.a.` :
+        [d.monthly&&d.monthly!=='Not Available'&&`${d.monthly} monthly`, d.yearly&&d.yearly!=='Not Available'&&`${d.yearly} annually`].filter(Boolean).join(' · ');
+      html += `<div class="feat-row"><span class="feat-icon">💰</span><div class="feat-text"><strong>${d.period||d.remarks}</strong>${rate}<br>${d.remarks||''}</div></div>`;
+    });
+    html += `</div></div>`;
+  }
+  html += `<button class="drawer-calc-btn" onclick="closeDrawerDirect(); launchCalc('${co}','')">🧮 Open Calculator</button>`;
+  document.getElementById('drawer-body').innerHTML = html;
+  document.getElementById('drawer-overlay').classList.add('open');
+}
+
+function openProductDrawer(co, pName, pList) {
+  const pTag = document.getElementById('drawer-tag');
+  pTag.textContent = co;
+  pTag.className = 'drawer-company-tag ' + (CO_CLS[co]||'');
+  document.getElementById('drawer-title').textContent = pName;
+  const isDb = pName.toLowerCase().includes('doubling');
+  const isNCD = pName.toLowerCase().includes('ncd');
+  const isRD = pList[0]?.type==='RD';
+  let html = `<div class="drawer-section"><div class="drawer-section-title">Options & Rates</div><div class="feat-rows">`;
+  pList.forEach((d,i)=>{
+    const isDb2 = d.type==='Doubling';
+    const rate = isDb2 ? 'Doubles on maturity' : isRD ? `${d.ratePA}% p.a. · ${d.period}` :
+      [d.monthly&&d.monthly!=='Not Available'&&`${d.monthly} monthly`, d.yearly&&d.yearly!=='Not Available'&&`${d.yearly} annually`].filter(Boolean).join(' · ');
+    html += `<div class="feat-row"><span class="feat-icon">💹</span><div class="feat-text"><strong>${d.remarks||d.period||'Option '+(i+1)}</strong>${rate}${d.period&&!isDb2?`<br>Period: ${d.period}`:''}</div></div>`;
+  });
+  html += `</div></div>`;
+  if(isNCD && pList[0]?.closureTerms) {
+    html += `<div class="drawer-section"><div class="drawer-section-title">Premature Closure Terms</div><div class="closure-box">`;
+    pList[0].closureTerms.forEach(t=>{html+=`<div class="closure-row"><span>${t.period}</span><strong>${t.cut}</strong></div>`;});
+    html += `</div></div>`;
+  }
+  if(pList[0]?.generalRemark) {
+    html += `<div class="notice-pill">⚠️ ${pList[0].generalRemark}</div>`;
+  }
+  html += `<button class="drawer-calc-btn" onclick="closeDrawerDirect(); launchCalc('${co}','${pName}')">🧮 Calculate My Returns</button>`;
+  document.getElementById('drawer-body').innerHTML = html;
+  document.getElementById('drawer-overlay').classList.add('open');
+}
+
+function closeDrawer(e){ if(e.target===document.getElementById('drawer-overlay')) closeDrawerDirect(); }
+function closeDrawerDirect(){ document.getElementById('drawer-overlay').classList.remove('open'); }
+
+/* ════════════════════════════════════
+   PRODUCTS
+════════════════════════════════════ */
+function getMaxRate(pList) {
+  let max=0;
+  pList.forEach(d=>{
+    const r=parseFloat((d.monthly||d.yearly||'0').replace('%','').replace('Not Available','0'))||0;
+    if(r>max) max=r;
+  });
+  return max;
+}
+
+function buildProds(filter) {
+  const list = document.getElementById('prod-list');
+  list.innerHTML='';
+  for(const [co,products] of Object.entries(DATA)) {
+    if(filter!=='all' && co!==filter) continue;
+    for(const [pName,pList] of Object.entries(products)) {
+      const cls = CO_CLS[co]||'special';
+      const col = CO_COLOR[co]||'blue';
+      const isDb = pName.toLowerCase().includes('doubling');
+      const isRD = pList[0]?.type==='RD';
+      const maxRate = isDb ? '×2' : isRD ? '12%' : getMaxRate(pList).toFixed(1)+'%';
+      const features=[];
+      if(pList[0]?.period) features.push('📅 '+pList[0].period);
+      if(pList.length>1) features.push('🎚️ '+pList.length+' tiers');
+      if(pList[0]?.generalRemark) features.push('🔒 '+pList[0].generalRemark);
+      if(pList[0]?.closureRemark) features.push('🔓 '+pList[0].closureRemark);
+      const minAmt = isRD ? '₹1,000/mo' : '₹'+((pList[0]?.minAmt)||10000).toLocaleString('en-IN');
+      const card = document.createElement('div');
+      card.className=`prod-card ${cls}`;
+      card.innerHTML=`
+        <div class="prod-card-stripe"></div>
+        <div class="prod-header">
+          <div>
+            <div class="prod-company ${cls}">${co}</div>
+            <div class="prod-name">${pName}</div>
+          </div>
+          <div class="prod-rate-badge ${col==='green'?'green':col==='purple'?'purple':col==='blue'?'blue':''}">${maxRate}</div>
+        </div>
+        <div class="prod-chips">${features.slice(0,3).map(f=>`<span class="prod-chip-item">${f}</span>`).join('')}</div>
+        <div class="prod-footer">
+          <div class="prod-min">Min: <strong>${minAmt}</strong></div>
+          <div class="prod-cta">Details →</div>
+        </div>`;
+      card.addEventListener('click', e=>{
+        if(!e.target.closest('.prod-cta')) openProductDrawer(co,pName,pList);
+        else openProductDrawer(co,pName,pList);
+      });
+      list.appendChild(card);
+    }
+  }
+}
+
+function filterProds(filter,btn) {
+  document.querySelectorAll('.pill').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  buildProds(filter);
+}
+
+/* ════════════════════════════════════
+   CALCULATOR
+════════════════════════════════════ */
+let cState = {co:'',prod:'',tier:0};
+
+function launchCalc(co,prod){
+  navTo('calculator');
+  if(co){
+    const cSel = document.getElementById('calc-company');
+    cSel.value=co; onCalcCo();
+    if(prod){
+      setTimeout(()=>{
+        const pSel=document.getElementById('calc-product');
+        pSel.value=prod; onCalcProd();
+      },60);
+    }
+  }
+}
+
+function onCalcCo(){
+  const co=document.getElementById('calc-company').value;
+  const pSel=document.getElementById('calc-product');
+  pSel.innerHTML='<option value="">— Choose a product —</option>';
+  pSel.disabled=!co;
+  cState={co,prod:'',tier:0};
+  resetResults();
+  if(co && DATA[co]){
+    Object.keys(DATA[co]).forEach(p=>{const o=document.createElement('option');o.value=p;o.textContent=p;pSel.appendChild(o);});
+  }
+}
+
+function onCalcProd(){
+  const co=document.getElementById('calc-company').value;
+  const prod=document.getElementById('calc-product').value;
+  cState={co,prod,tier:0};
+  resetResults();
+  if(!co||!prod||!DATA[co]?.[prod]) return;
+  const list=DATA[co][prod];
+  const isRD=list[0]?.type==='RD';
+  const isSan=co==='SANGEETH NIDHI';
+  const isNCD=prod.toLowerCase().includes('ncd');
+  const isDb=prod.toLowerCase().includes('doubling');
+
+  // Tiers
+  const tg=document.getElementById('tier-group');
+  const to=document.getElementById('tier-options');
+  if(list.length>1){
+    tg.classList.remove('hidden');
+    to.innerHTML='';
+    list.forEach((d,i)=>{
+      const rate=isDb?'Doubles on maturity':
+        [d.monthly&&d.monthly!=='Not Available'&&d.monthly, d.yearly&&d.yearly!=='Not Available'&&d.yearly].filter(Boolean).join(' / ');
+      const lbl = isSan ? d.period : d.remarks;
+      const div=document.createElement('div');
+      div.className='tier-opt'+(i===0?' selected':'');
+      div.innerHTML=`<div class="tier-opt-radio"></div><div class="tier-opt-info"><div class="tier-opt-label">${lbl}</div><div class="tier-opt-sub">Min: ₹${(d.minAmt||10000).toLocaleString('en-IN')}</div></div><div class="tier-opt-rate">${rate}</div>`;
+      div.onclick=()=>{
+        document.querySelectorAll('.tier-opt').forEach(t=>t.classList.remove('selected'));
+        div.classList.add('selected');
+        cState.tier=i;
+        updateAmtHint();
+        runCalc();
+      };
+      to.appendChild(div);
+    });
+    document.getElementById('amt-step-lbl').innerHTML=`<div class="step-num">4</div><span>Enter Amount</span>`;
+  } else {
+    tg.classList.add('hidden');
+    document.getElementById('amt-step-lbl').innerHTML=`<div class="step-num">3</div><span>${isRD?'Monthly Deposit':'Enter Amount'}</span>`;
+  }
+
+  // Period
+  const pg=document.getElementById('period-group');
+  const pi=document.getElementById('calc-period');
+  const ph=document.getElementById('period-hint');
+  if(isSan){
+    pg.classList.remove('hidden');
+    const d=list[cState.tier]||list[0];
+    pi.min=d.minPeriod||0.5; pi.max=d.maxPeriod||5; pi.value=d.defaultPeriod||1;
+    pi.step=0.5;
+    ph.textContent=`Valid: ${d.minPeriod||0.5} – ${d.maxPeriod||5} year(s)`;
+    document.getElementById('period-step-num').textContent=list.length>1?'5':'4';
+  } else if(isNCD){
+    pg.classList.remove('hidden');
+    pi.min=1; pi.max=10; pi.value=5; pi.step=1;
+    ph.textContent='NCD tenure: 1 to 10 years';
+    document.getElementById('period-step-num').textContent=list.length>1?'5':'4';
+  } else if(isRD){
+    pg.classList.remove('hidden');
+    pi.min=1; pi.max=4; pi.value=1; pi.step=1;
+    ph.textContent='RD duration: 1 to 4 years · 1yr=10%, 2yr=11%, 3–4yr=12%';
+    document.getElementById('period-step-num').textContent='4';
+  } else {
+    pg.classList.add('hidden');
+  }
+
+  updateAmtHint();
+}
+
+function updateAmtHint(){
+  const co=cState.co; const prod=cState.prod;
+  if(!co||!prod||!DATA[co]?.[prod]) return;
+  const list=DATA[co][prod];
+  const d=list[cState.tier]||list[0];
+  const hint=document.getElementById('amt-hint');
+  const isRD=d.type==='RD';
+  if(isRD){hint.textContent='Enter monthly deposit (min ₹1,000)';return;}
+  const mn=d.minAmt||10000;
+  const mx=d.maxAmt;
+  if(mx&&mx!==Infinity) hint.textContent=`₹${mn.toLocaleString('en-IN')} – ₹${mx.toLocaleString('en-IN')}`;
+  else hint.textContent=`Minimum: ₹${mn.toLocaleString('en-IN')}`;
+  hint.className='amt-hint';
+}
+
+function resetResults(){
+  document.getElementById('results-box').classList.remove('show');
+  document.getElementById('amt-hint').textContent='Minimum investment: ₹10,000';
+  document.getElementById('amt-hint').className='amt-hint';
+  document.getElementById('calc-amount').value='';
+  document.getElementById('calc-amount').className='amt-input';
+}
+
+function setAmt(v){
+  document.getElementById('calc-amount').value=v;
+  runCalc();
+}
+
+function getPeriodMonths(d, periodInputVal, isSan, isNCD, isRD){
+  if(isRD && periodInputVal) return Math.round(periodInputVal*12);
+  if(isSan && periodInputVal) return Math.round(periodInputVal*12);
+  if(isNCD && periodInputVal) return Math.round(periodInputVal*12);
+  if(d.period){
+    const m=d.period.match(/(\d+\.?\d*)\s*(YEAR|Month)/i);
+    if(m){ const n=parseFloat(m[1]); return m[2].toLowerCase().startsWith('month')?Math.round(n):Math.round(n*12); }
+  }
+  return 66; // default 5.5yr
+}
+
+function runCalc(){
+  const co=cState.co; const prod=cState.prod;
+  if(!co||!prod||!DATA[co]?.[prod]) return;
+  const list=DATA[co][prod];
+  const d=list[cState.tier]||list[0];
+  const amt=parseFloat(document.getElementById('calc-amount').value)||0;
+  const perInp=parseFloat(document.getElementById('calc-period').value)||0;
+  const isDb=prod.toLowerCase().includes('doubling')||d.type==='Doubling';
+  const isNCD=prod.toLowerCase().includes('ncd');
+  const isRD=d.type==='RD';
+  const isSan=co==='SANGEETH NIDHI';
+  const inp=document.getElementById('calc-amount');
+  const hintEl=document.getElementById('amt-hint');
+  const box=document.getElementById('results-box');
+
+  // Validate
+  if(!amt||amt<=0){ inp.className='amt-input err'; hintEl.textContent='Please enter a valid amount.'; hintEl.className='amt-hint err'; return;}
+  const mn=isRD?1000:(d.minAmt||10000);
+  const mx=d.maxAmt||Infinity;
+  if(amt<mn){ inp.className='amt-input err'; hintEl.textContent=`Minimum is ₹${mn.toLocaleString('en-IN')}`; hintEl.className='amt-hint err'; return;}
+  if(amt>mx){ inp.className='amt-input err'; hintEl.textContent=`Maximum for this tier is ₹${mx.toLocaleString('en-IN')}`; hintEl.className='amt-hint err'; return;}
+  inp.className='amt-input'; hintEl.className='amt-hint'; updateAmtHint();
+
+  const periodMonths=getPeriodMonths(d,perInp,isSan,isNCD,isRD);
+  const periodYears=periodMonths/12;
+
+  document.getElementById('results-sub-text').textContent=`${co} · ${prod}`;
+  let html='<div class="res-cards">';
+
+  if(isDb){
+    // Doubling
+    html+=`
+      <div class="res-card highlight">
+        <div class="res-label">Maturity Amount</div>
+        <div class="res-val gold">₹${fmt(amt*2)}</div>
+        <div class="res-sub">Investment doubles in ${d.period||'70 months'}</div>
+      </div>
+      <div class="res-card">
+        <div class="res-label">You Invest</div>
+        <div class="res-val">₹${fmt(amt)}</div>
+        <div class="res-sub">One-time deposit</div>
+      </div>
+      <div class="res-card">
+        <div class="res-label">You Gain</div>
+        <div class="res-val green">₹${fmt(amt)}</div>
+        <div class="res-sub">100% profit at maturity</div>
+      </div>`;
+  } else if(isRD){
+    /* ── CORRECTED RD CALCULATION ──
+       Standard RD formula: M = R × [(1+i)^n - 1] / (1 - (1+i)^(-1/3))
+       Simpler accurate version: compound each instalment separately
+       M = R × ((1+r)^n - 1) / r   where r = annual_rate/12
+       This IS the correct formula for RD compounded quarterly commonly used in India,
+       but since rate here is monthly compounding:  r = ratePA / 12  */
+    const ratePA = (perInp<=1 ? 10 : perInp<=2 ? 11 : 12) / 100;
+    const r = ratePA/12; // monthly rate
+    const n = periodMonths;
+    // Future value of annuity (payments at start of each month)
+    const maturity = Math.round(amt * r * ((Math.pow(1+r,n)-1)/r) / r + amt * Math.pow(1+r,n));
+    // Simpler standard: M = R × [((1+r)^n - 1)/r] × (1+r)
+    const mat2 = Math.round(amt * ((Math.pow(1+r,n)-1)/r) * (1+r));
+    const totalDep = amt * n;
+    const interest = mat2 - totalDep;
+    html+=`
+      <div class="res-card highlight">
+        <div class="res-label">Maturity Value</div>
+        <div class="res-val gold">₹${fmt(mat2)}</div>
+        <div class="res-sub">After ${perInp||1} year(s) at ${(ratePA*100).toFixed(0)}% p.a.</div>
+      </div>
+      <div class="res-card">
+        <div class="res-label">Total Deposited</div>
+        <div class="res-val">₹${fmt(totalDep)}</div>
+        <div class="res-sub">₹${fmt(amt)} × ${n} months</div>
+      </div>
+      <div class="res-card">
+        <div class="res-label">Interest Earned</div>
+        <div class="res-val green">₹${fmt(interest)}</div>
+        <div class="res-sub">Compounded monthly on each instalment</div>
+      </div>
+      <div class="res-card">
+        <div class="res-label">Effective Yield</div>
+        <div class="res-val">₹${fmt(mat2/totalDep*100-100)} %</div>
+        <div class="res-sub">Total gain over total deposited</div>
+      </div>`;
+  } else {
+    // SD / NCD
+    const mR=pct(d.monthly); const yR=pct(d.yearly);
+    const montInt = mR ? Math.round(amt*mR/12) : null;
+    const annInt  = yR ? Math.round(amt*yR)    : null;
+    const totM    = montInt ? amt + montInt*periodMonths : null;
+    const totY    = annInt  ? amt + annInt*periodYears   : null;
+
+    if(montInt!==null){
+      html+=`<div class="res-card highlight"><div class="res-label">Monthly Interest Payout</div><div class="res-val gold">₹${fmt(montInt)}</div><div class="res-sub">Every month at ${d.monthly} p.a.</div></div>`;
+    }
+    if(annInt!==null){
+      html+=`<div class="res-card"><div class="res-label">Annual Interest Payout</div><div class="res-val">₹${fmt(annInt)}</div><div class="res-sub">Every year at ${d.yearly} p.a.</div></div>`;
+    }
+    if(totM!==null){
+      html+=`<div class="res-card"><div class="res-label">Total Return (Monthly plan)</div><div class="res-val">₹${fmt(totM)}</div><div class="res-sub">Principal + ₹${fmt(montInt*periodMonths)} interest over ${periodMonths} months</div></div>`;
+    }
+    if(totY!==null){
+      html+=`<div class="res-card"><div class="res-label">Total Return (Annual plan)</div><div class="res-val">₹${fmt(totY)}</div><div class="res-sub">Principal + ₹${fmt(annInt*periodYears)} interest over ${periodMonths} months</div></div>`;
+    }
+    // RD reinvestment tip
+    if(montInt&&!isNCD&&mR){
+      const r=mR/12; const n=periodMonths;
+      const rdMat=Math.round(montInt*((Math.pow(1+r,n)-1)/r)*(1+r));
+      html+=`<div class="res-card"><div class="res-label">💡 If Monthly Interest is Reinvested (RD)</div><div class="res-val green">₹${fmt(rdMat)}</div><div class="res-sub">If ₹${fmt(montInt)}/mo is reinvested at same rate</div></div>`;
+    }
+    if(d.closureTerms){
+      html+=`<div class="closure-box"><div class="closure-title">Premature Closure Terms</div>`;
+      d.closureTerms.forEach(t=>{html+=`<div class="closure-row"><span>${t.period}</span><strong>${t.cut}</strong></div>`;});
+      html+=`</div>`;
+    }
+    if(d.generalRemark){
+      html+=`<div class="notice-pill">⚠️ ${d.generalRemark}</div>`;
+    }
+  }
+  // Bank comparison row
+  if(!isDb && !isRD && amt>0){
+    const sbiRate=0.070; const hdfcRate=0.074;
+    const mySRate=pct(d.monthly)||pct(d.yearly)||0;
+    if(mySRate>0){
+      const years=periodYears||5.5;
+      const myInt=Math.round(amt*mySRate*years);
+      const sbiInt=Math.round(amt*sbiRate*years);
+      const hdfcInt=Math.round(amt*hdfcRate*years);
+      const extra=Math.round(myInt-hdfcInt);
+      html+=`<div class="res-card" style="border-color:rgba(26,111,191,0.2);background:linear-gradient(135deg,rgba(26,111,191,0.05),rgba(26,111,191,0.02))">
+        <div class="res-label" style="color:var(--gold)">📊 Bank FD Comparison (${years.toFixed(1)} yr)</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:6px">
+          <div style="text-align:center;background:var(--bg3);border-radius:8px;padding:8px 4px;border:1px solid var(--border)">
+            <div style="font-size:0.58rem;color:var(--text3);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:3px">SBI FD</div>
+            <div style="font-family:'Space Grotesk',sans-serif;font-size:0.9rem;font-weight:800;color:var(--text3)">₹${fmt(sbiInt)}</div>
+            <div style="font-size:0.58rem;color:var(--text3);margin-top:2px">7.0% p.a.</div>
+          </div>
+          <div style="text-align:center;background:var(--bg3);border-radius:8px;padding:8px 4px;border:1px solid var(--border)">
+            <div style="font-size:0.58rem;color:var(--text3);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:3px">HDFC FD</div>
+            <div style="font-family:'Space Grotesk',sans-serif;font-size:0.9rem;font-weight:800;color:var(--text3)">₹${fmt(hdfcInt)}</div>
+            <div style="font-size:0.58rem;color:var(--text3);margin-top:2px">7.4% p.a.</div>
+          </div>
+          <div style="text-align:center;background:var(--gold-dim);border-radius:8px;padding:8px 4px;border:1px solid rgba(26,111,191,0.2)">
+            <div style="font-size:0.58rem;color:var(--gold);text-transform:uppercase;letter-spacing:0.05em;font-weight:700;margin-bottom:3px">This Product</div>
+            <div style="font-family:'Space Grotesk',sans-serif;font-size:0.9rem;font-weight:800;color:var(--gold)">₹${fmt(myInt)}</div>
+            <div style="font-size:0.58rem;color:var(--gold);margin-top:2px">${(mySRate*100).toFixed(1)}% p.a.</div>
+          </div>
+        </div>
+        <div style="margin-top:8px;font-size:0.7rem;color:var(--green);font-weight:700">✅ You earn ₹${fmt(extra)} more than HDFC FD over ${years.toFixed(1)} year(s)</div>
+      </div>`;
+    }
+  }
+  html+='</div>';
+  document.getElementById('results-body').innerHTML=html;
+  box.classList.add('show');
+  setTimeout(()=>box.scrollIntoView({behavior:'smooth',block:'nearest'}),100);
+}
+
+/* ════════════════════════════════════
+   COMPARE
+════════════════════════════════════ */
+let cmpSel = new Set();
+
+function buildCmpGrid(){
+  const grid=document.getElementById('cmp-grid');
+  grid.innerHTML='';
+  cmpSel.clear();
+  document.getElementById('cmp-table-wrap').classList.remove('show');
+  for(const [co,products] of Object.entries(DATA)){
+    for(const [pName,pList] of Object.entries(products)){
+      const key=`${co}|||${pName}`;
+      const isDb=pName.toLowerCase().includes('doubling');
+      const isRD=pList[0]?.type==='RD';
+      const rate=isDb?'Doubles':isRD?'12%':getMaxRate(pList).toFixed(1)+'%';
+      const item=document.createElement('div');
+      item.className='cmp-item';item.dataset.key=key;
+      item.innerHTML=`<div class="cmp-check">✓</div><div class="cmp-item-info"><div class="cmp-item-name">${pName}</div><div class="cmp-item-company">${co}</div></div><div class="cmp-item-rate">${rate}</div>`;
+      item.onclick=()=>toggleCmp(key,item);
+      grid.appendChild(item);
+    }
+  }
+}
+
+function toggleCmp(key,item){
+  if(cmpSel.has(key)){cmpSel.delete(key);item.classList.remove('selected');}
+  else{
+    if(cmpSel.size>=3){alert('Max 3 products');return;}
+    cmpSel.add(key);item.classList.add('selected');
+  }
+  runCompare();
+}
+
+function runCompare(){
+  const amt=parseFloat(document.getElementById('cmp-amount').value)||0;
+  const tw=document.getElementById('cmp-table-wrap');
+  if(cmpSel.size<2){tw.classList.remove('show');return;}
+  const keys=Array.from(cmpSel);
+  let th=`<tr><th>Feature</th>`;
+  keys.forEach(k=>{const [co,pn]=k.split('|||');th+=`<th>${pn}<br><span style="font-size:0.6rem;opacity:0.6;font-weight:400">${co}</span></th>`;});
+  th+='</tr>';
+  const frows=[
+    {l:'Type',fn:(co,pn,pl)=>pl[0]?.type==='RD'?'RD':pn.toLowerCase().includes('doubling')?'Doubling':pn.toLowerCase().includes('ncd')?'NCD':'Deposit'},
+    {l:'Period',fn:(co,pn,pl)=>pl[0]?.period||'—'},
+    {l:'Max Monthly Rate',fn:(co,pn,pl)=>{const m=pl.map(d=>parseFloat((d.monthly||'0').replace('%',''))).filter(Boolean);return m.length?Math.max(...m).toFixed(1)+'%':'—';}},
+    {l:'Max Annual Rate',fn:(co,pn,pl)=>{const y=pl.map(d=>parseFloat((d.yearly||'0').replace('%','').replace('Not Available','0'))).filter(Boolean);return y.length?Math.max(...y).toFixed(1)+'%':'—';}},
+    {l:'Premature Closure',fn:(co,pn,pl)=>pl[0]?.closureRemark||pl[0]?.generalRemark||'Not Allowed'},
+    {l:'Min Investment',fn:(co,pn,pl)=>{if(pl[0]?.minAmount) return '₹'+pl[0].minAmount.toLocaleString('en-IN')+'/mo';return '₹'+(pl[0]?.minAmt||10000).toLocaleString('en-IN');}},
+  ];
+  if(amt>0){
+    frows.push({l:'Monthly Income',fn:(co,pn,pl)=>{
+      if(pn.toLowerCase().includes('doubling')||pl[0]?.type==='RD') return 'N/A';
+      const rates=pl.map(d=>pct(d.monthly)).filter(Boolean);
+      return rates.length?'₹'+fmt(amt*Math.max(...rates)/12)+'/mo':'—';
+    }});
+    frows.push({l:'Maturity Value',fn:(co,pn,pl)=>{
+      if(pn.toLowerCase().includes('doubling')) return '₹'+fmt(amt*2)+' (70mo)';
+      if(pl[0]?.type==='RD') return '—';
+      const per=pl[0]?.period||'5.5 YEARS';
+      const m2=per.match(/(\d+\.?\d*)\s*(YEAR|Month)/i);
+      let mo=m2?(m2[2].toLowerCase().startsWith('m')?Math.round(parseFloat(m2[1])):Math.round(parseFloat(m2[1])*12)):66;
+      const rates=pl.map(d=>pct(d.monthly)).filter(Boolean);
+      if(!rates.length) return '—';
+      return '₹'+fmt(amt+amt*Math.max(...rates)/12*mo);
+    }});
+  }
+  let tbody='';
+  frows.forEach(fr=>{
+    tbody+=`<tr><td><strong>${fr.l}</strong></td>`;
+    keys.forEach(k=>{const [co,pn]=k.split('|||');const pl=DATA[co][pn];tbody+=`<td>${fr.fn(co,pn,pl)}</td>`;});
+    tbody+='</tr>';
+  });
+  const tbl=document.getElementById('cmp-table');
+  tbl.innerHTML=`<thead>${th}</thead><tbody>${tbody}</tbody>`;
+  tw.classList.add('show');
+}
+
+/* ════════════════════════════════════
+   FAQ
+════════════════════════════════════ */
+const FAQS=[
+  {q:'What is the minimum investment amount?',a:'The minimum investment is ₹10,000 for Subordinated Deposits (SD), Doubling Schemes, and Nidhi Fixed Deposits. For NCDs, the minimum varies by company (₹3 Lakhs for SML Finance, ₹5 Lakhs for Vanchinad). For Recurring Deposits, the minimum monthly contribution is ₹1,000.'},
+  {q:'What is a Subordinated Deposit (SD)?',a:'A Subordinated Deposit is a fixed-term investment offered by NBFCs. Your money earns a fixed interest rate paid monthly or annually. It is called "subordinated" because in case of liquidation, these depositors are paid after secured creditors. The tenure for SD products here is 5.5 years with no premature closure.'},
+  {q:'What is a Non-Convertible Debenture (NCD)?',a:'NCDs are debt instruments issued by companies. They offer fixed interest and cannot be converted into shares. Both SML Finance and Vanchinad Finance offer 10-year NCDs. Premature closure is allowed after 1 year, with reducing penalties: 1–2% in early years, nil after 3 years.'},
+  {q:'What is the Doubling Scheme?',a:'In the Doubling Scheme, your invested amount exactly doubles at maturity — which is 70 months (approximately 5 years and 10 months). No periodic interest is paid. Premature closure is not allowed. The implied return is approximately 12.5% per year.'},
+  {q:'How is Recurring Deposit (RD) calculated?',a:'RD returns are computed using the standard annuity formula: M = R × [(1+r)^n − 1] / r × (1+r), where R is your monthly deposit, r is the monthly interest rate (annual rate ÷ 12), and n is the total number of months. Interest compounds monthly on each instalment from its deposit date.'},
+  {q:'Can I close my investment before maturity?',a:'SD and Doubling Scheme products do not allow premature closure. NCDs allow closure after 1 year with a penalty that decreases over time (1–2% cut in year 1–2, 0.5–1% in year 2–3, nil after 3 years). After the 3rd year, if closed between anniversary dates, the effective rate is capped at 9%.'},
+  {q:'Are these companies safe and regulated?',a:'SML Finance Ltd and Vanchinad Finance (P) Ltd are Non-Banking Financial Companies (NBFCs) registered and regulated by the Reserve Bank of India (RBI). Sangeeth Nidhi is a registered Nidhi Company regulated by the Ministry of Corporate Affairs, Government of India.'},
+  {q:'How is interest taxed?',a:'Interest income from all these products is taxable under "Income from Other Sources" as per your income tax slab. TDS may be deducted at source if interest exceeds ₹5,000 per year for NBFCs or ₹40,000 (₹50,000 for seniors) for banks/nidhi. Consult your CA for personalised advice.'},
+  {q:'Which product gives the highest returns?',a:'SML Finance SD for amounts above ₹25 Lakhs offers 14.5% annually — the highest in the portfolio. For amounts under ₹5 Lakhs, the Doubling Scheme is competitive at ~12.5% effective. Use the Compare screen to run a side-by-side analysis with your actual amount.'},
+  {q:'How do I start investing?',a:'Simply decide your preferred product and amount using the Calculator here, then contact our advisors directly. They will guide you through KYC documentation, form filling, and cheque/NEFT submission. Your investment certificate will be issued within a few working days.'},
+];
+
+function buildFaq(){
+  const el=document.getElementById('faq-items');
+  if(el.children.length>0) return;
+  FAQS.forEach(f=>{
+    const d=document.createElement('div');
+    d.className='faq-card';
+    d.innerHTML=`<button class="faq-q" onclick="toggleFaq(this)">${f.q}<span class="faq-arr">▼</span></button><div class="faq-ans">${f.a}</div>`;
+    el.appendChild(d);
+  });
+}
+function toggleFaq(btn){
+  const item=btn.closest('.faq-card');
+  const was=item.classList.contains('open');
+  document.querySelectorAll('.faq-card.open').forEach(e=>e.classList.remove('open'));
+  if(!was) item.classList.add('open');
+}
+
+function showSearch(){ alert('Search coming soon! Browse products in the Products tab.'); }
+
+// Init
+buildProds('all');
+buildFaq();
+
+/* ════════════════════════════════════
+   SMART PRODUCT FINDER QUIZ
+════════════════════════════════════ */
+const QUIZ_STEPS = [
+  { id:'age',   q:'How old are you?',                   opts:null },
+  { id:'prof',  q:'What is your profession?',            opts:['Salaried','Business Owner','Self Employed','Homemaker','Retired','Student'] },
+  { id:'amt',   q:'How much do you plan to invest?',     opts:['Under ₹50,000','₹50K – ₹2 Lakhs','₹2L – ₹5 Lakhs','₹5L – ₹25 Lakhs','₹25 Lakhs & above'] },
+  { id:'tenor', q:'How long can you stay invested?',     opts:['Short (< 1 yr)','Medium (1–3 yrs)','Long (5–6 yrs)','Very Long (10 yrs)'] },
+  { id:'payout',q:'How do you want your interest?',      opts:['Monthly income','Annual payout','At maturity (lump sum)','Monthly savings (RD)'] }
+];
+
+let qStep = 0;
+let qAns  = {};
+
+function quizAgeInput(){
+  const v = parseInt(document.getElementById('quiz-age').value);
+  const btn = document.getElementById('quiz-next');
+  btn.classList.toggle('ready', v>=18 && v<=90);
+}
+
+function quizSetStep(step){
+  qStep = step;
+  const s = QUIZ_STEPS[step];
+
+  // Update progress dots
+  QUIZ_STEPS.forEach((_,i)=>{
+    const dot = document.getElementById('qdot-'+i);
+    dot.className = 'quiz-step-dot' + (i < step ? ' done' : i===step ? ' active' : '');
+  });
+
+  document.getElementById('quiz-question').textContent = s.q;
+  document.getElementById('quiz-back').style.display = step > 0 ? 'block' : 'none';
+
+  const ageWrap = document.getElementById('quiz-age-wrap');
+  const optsEl  = document.getElementById('quiz-opts');
+  const nextBtn = document.getElementById('quiz-next');
+
+  if(step === 0){
+    ageWrap.style.display = 'block';
+    optsEl.style.display  = 'none';
+    const age = document.getElementById('quiz-age').value;
+    nextBtn.classList.toggle('ready', age>=18 && age<=90);
+  } else {
+    ageWrap.style.display = 'none';
+    optsEl.style.display  = 'flex';
+    optsEl.innerHTML = s.opts.map(o =>
+      `<div class="quiz-opt${qAns[s.id]===o?' selected':''}" onclick="quizSelect(this,'${s.id}','${o}')">${o}</div>`
+    ).join('');
+    nextBtn.classList.toggle('ready', !!qAns[s.id]);
+    nextBtn.textContent = step === QUIZ_STEPS.length-1 ? 'See Results ✓' : 'Next →';
+  }
+}
+
+function quizSelect(el, key, val){
+  document.querySelectorAll('#quiz-opts .quiz-opt').forEach(e=>e.classList.remove('selected'));
+  el.classList.add('selected');
+  qAns[key] = val;
+  document.getElementById('quiz-next').classList.add('ready');
+}
+
+function quizNext(){
+  if(qStep === 0){
+    const age = parseInt(document.getElementById('quiz-age').value);
+    if(!age || age<18 || age>90) return;
+    qAns.age = age;
+  }
+  if(qStep < QUIZ_STEPS.length - 1){
+    quizSetStep(qStep + 1);
+  } else {
+    quizShowResult();
+  }
+}
+
+function quizBack(){
+  if(qStep > 0) quizSetStep(qStep - 1);
+}
+
+function quizRestart(){
+  qStep = 0; qAns = {};
+  document.getElementById('quiz-result').classList.remove('show');
+  document.getElementById('quiz-form').style.display = 'block';
+  document.getElementById('quiz-header') && null;
+  document.querySelector('.quiz-header').style.display = 'flex';
+  document.querySelector('.quiz-steps').style.display = 'flex';
+  document.getElementById('quiz-age').value = '';
+  
+}
+
+function quizShowResult(){
+  document.getElementById('quiz-form').style.display = 'none';
+  document.querySelector('.quiz-header').style.display = 'none';
+  document.querySelector('.quiz-steps').style.display = 'none';
+
+  const recs = quizRecommend(qAns);
+  const list = document.getElementById('quiz-rec-list');
+  list.innerHTML = recs.map((r, i) => `
+    <div class="quiz-rec-card ${i===0?'primary':'secondary'}" onclick="launchCalc('${r.co}','${r.prod}')">
+      <div class="quiz-rec-rank r${i+1}">${i===0?'#1':'#2'}</div>
+      <div class="quiz-rec-info">
+        <div class="quiz-rec-co ${r.cls}">${r.coShort} · ${r.type}</div>
+        <div class="quiz-rec-prod">${r.prod}</div>
+        <div class="quiz-rec-reason">${r.reason}</div>
+      </div>
+      <div class="quiz-rec-rate ${r.cls}">${r.rate}</div>
+    </div>`).join('');
+
+  document.getElementById('quiz-result').classList.add('show');
+}
+
+function quizRecommend(a){
+  const age    = a.age;
+  const payout = a.payout;
+  const tenor  = a.tenor;
+  const amt    = a.amt;
+  const prof   = a.prof;
+
+  // Determine amount bucket
+  const amtNum = amt==='Under ₹50,000'?30000 : amt==='₹50K – ₹2 Lakhs'?100000 :
+                 amt==='₹2L – ₹5 Lakhs'?350000 : amt==='₹5L – ₹25 Lakhs'?1000000 : 3000000;
+
+  const isMonthly  = payout === 'Monthly income';
+  const isAnnual   = payout === 'Annual payout';
+  const isMaturity = payout === 'At maturity (lump sum)';
+  const isRD       = payout === 'Monthly savings (RD)';
+  const isShort    = tenor  === 'Short (< 1 yr)';
+  const isMedium   = tenor  === 'Medium (1–3 yrs)';
+  const isLong     = tenor  === 'Long (5–6 yrs)';
+  const isVeryLong = tenor  === 'Very Long (10 yrs)';
+  const isRetired  = prof   === 'Retired' || age >= 58;
+  const isStudent  = prof   === 'Student';
+  const isSalaried = prof   === 'Salaried';
+
+  const recs = [];
+
+  // ── RD Path ──
+  if(isRD){
+    recs.push({ co:'Special Calculators', prod:'Recurring Deposit (RD)', cls:'blue',
+      coShort:'SML Group', type:'RD',
+      rate:'12% p.a.', reason:'Start with as little as ₹1,000/month. 12% p.a. compounded monthly over 3–4 years — ideal for salaried individuals building savings gradually.' });
+    if(amtNum >= 500000 && isLong){
+      recs.push({ co:'Vanchinad Finance (P) Ltd', prod:'SD 5.5 Year', cls:'van',
+        coShort:'Vanchinad', type:'SD',
+        rate:'14%', reason:'Once your RD matures, park the corpus in a Vanchinad SD at up to 14% p.a. for long-term growth.' });
+    } else {
+      recs.push({ co:'SANGEETH NIDHI', prod:'Sangeeth Nidhi Deposits', cls:'san',
+        coShort:'Sangeeth Nidhi', type:'FD',
+        rate:'12.5%', reason:'Sangeeth Nidhi deposits complement a monthly RD habit — good for medium tenures with flexible amounts.' });
+    }
+    return recs;
+  }
+
+  // ── Short tenor ──
+  if(isShort){
+    recs.push({ co:'SANGEETH NIDHI', prod:'Sangeeth Nidhi Deposits', cls:'san',
+      coShort:'Sangeeth Nidhi', type:'FD',
+      rate:'9%', reason:'Short-term (6–12 month) deposit with Sangeeth Nidhi — only regulated option with sub-1-year tenure in the SML Group.' });
+    recs.push({ co:'SANGEETH NIDHI', prod:'Sangeeth Nidhi Deposits', cls:'san',
+      coShort:'Sangeeth Nidhi', type:'FD',
+      rate:'10.5%', reason:'Extend to 1–3 years for higher rates up to 10.5% p.a. with monthly or annual payout options.' });
+    return recs;
+  }
+
+  // ── Very long (NCD) ──
+  if(isVeryLong && amtNum >= 300000){
+    const co = amtNum >= 500000 ? 'Vanchinad Finance (P) Ltd' : 'SML Finance Ltd';
+    const cls = co==='Vanchinad Finance (P) Ltd' ? 'van' : 'sml';
+    const coShort = co==='Vanchinad Finance (P) Ltd' ? 'Vanchinad' : 'SML Finance';
+    const rate = isMonthly ? (amtNum>=1500000?'13%':'12.5%') : (amtNum>=1500000?'13.5%':'13%');
+    recs.push({ co, prod:'Non-Convertible Debentures (NCD)', cls, coShort, type:'NCD',
+      rate, reason:`10-year NCD with ${isMonthly?'monthly':'annual'} interest payout. Exit allowed after 1 year with reducing penalty. Best for long-term, high-yield fixed income.` });
+    recs.push({ co:'SML Finance Ltd', prod:'SD 5.5 Year', cls:'sml', coShort:'SML Finance', type:'SD',
+      rate: isAnnual?'14.5%':'14%', reason:'SD is a simpler 5.5-year option alongside your NCD. No closure allowed, but rates are among the highest available.' });
+    return recs;
+  }
+
+  // ── Doubling / maturity path ──
+  if(isMaturity){
+    recs.push({ co:'SML Finance Ltd', prod:'Doubling Scheme', cls:'sml', coShort:'SML Finance', type:'Doubling',
+      rate:'×2 in 70M', reason:'Your money doubles at maturity in 70 months (~5.8 yrs). No interim payouts — ideal if you do not need regular income and want maximum corpus growth.' });
+    recs.push({ co:'Vanchinad Finance (P) Ltd', prod:'Sub-ordinated Debt Doubling Scheme', cls:'van', coShort:'Vanchinad', type:'Doubling',
+      rate:'×2 in 70M', reason:'Same doubling benefit through Vanchinad Finance — diversify across both for added security.' });
+    return recs;
+  }
+
+  // ── Long + Monthly income ──
+  if(isLong && isMonthly){
+    const co = amtNum>=2500000 ? 'SML Finance Ltd' : 'Vanchinad Finance (P) Ltd';
+    const cls = co==='SML Finance Ltd'?'sml':'van';
+    const coShort = co==='SML Finance Ltd'?'SML Finance':'Vanchinad';
+    const rate = amtNum>=2500000?'14%':(amtNum>=500000?'13.5%':'12%');
+    recs.push({ co, prod:'SD 5.5 Year', cls, coShort, type:'SD',
+      rate, reason:`Monthly interest directly to your account for 5.5 years. ${isRetired?'Perfect for retirement income — stable and predictable.':'Great passive income stream alongside your primary income.'}` });
+    recs.push({ co:'SANGEETH NIDHI', prod:'Sangeeth Nidhi Deposits', cls:'san', coShort:'Sangeeth', type:'FD',
+      rate:'12%', reason:'Sangeeth Nidhi monthly option for smaller amounts or diversification alongside the primary SD.' });
+    return recs;
+  }
+
+  // ── Long + Annual ──
+  if(isLong && isAnnual){
+    const rate = amtNum>=2500000?'14.5%':(amtNum>=500000?'13.5%':'13%');
+    const co = amtNum>=2500000?'SML Finance Ltd':'Vanchinad Finance (P) Ltd';
+    const cls = co==='SML Finance Ltd'?'sml':'van';
+    const coShort = co==='SML Finance Ltd'?'SML Finance':'Vanchinad';
+    recs.push({ co, prod:'SD 5.5 Year', cls, coShort, type:'SD',
+      rate, reason:`Annual payout at up to ${rate} p.a. — interest credited once a year, principal returned at end of 5.5 years. Higher yield than monthly payout option.` });
+    recs.push({ co:'SML Finance Ltd', prod:'Doubling Scheme', cls:'sml', coShort:'SML Finance', type:'Doubling',
+      rate:'×2 in 70M', reason:'If you can forgo interim payouts entirely, the Doubling Scheme gives the best maturity return.' });
+    return recs;
+  }
+
+  // ── Medium + any ──
+  if(isMedium){
+    recs.push({ co:'SANGEETH NIDHI', prod:'Sangeeth Nidhi Deposits', cls:'san', coShort:'Sangeeth Nidhi', type:'FD',
+      rate:'11%', reason:`1–3 year tenure at up to 11% p.a. with ${isMonthly?'monthly':'annual'} payout. Regulated by MCA, flexible across small and large amounts.` });
+    recs.push({ co:'SANGEETH NIDHI', prod:'Sangeeth Nidhi Deposits', cls:'san', coShort:'Sangeeth Nidhi', type:'FD',
+      rate:'12.5%', reason:'Stretch to 5 years (if ₹5L+) and unlock the 12.5% premium rate.' });
+    return recs;
+  }
+
+  // Fallback
+  recs.push({ co:'SML Finance Ltd', prod:'SD 5.5 Year', cls:'sml', coShort:'SML Finance', type:'SD',
+    rate:'14.5%', reason:'Best overall return in the SML Group for most investor profiles — 5.5 year fixed deposit with annual or monthly payout.' });
+  recs.push({ co:'Vanchinad Finance (P) Ltd', prod:'SD 5.5 Year', cls:'van', coShort:'Vanchinad', type:'SD',
+    rate:'14%', reason:'Strong alternative from Vanchinad Finance at comparable rates — good for diversification.' });
+  return recs;
+}
+
+// Init quiz on load
+
+</script>
+
+<script>
+// Sync desk topbar title
+const SCREEN_TITLES = {home:'Home',products:'All Products',calculator:'Returns Calculator',learn:'Learn & Compare',trust:'Why Trust Us',compare:'Compare Products',faq:'Frequently Asked Questions'};
+const _origNavTo = navTo;
+function navTo(id){
+  _origNavTo(id);
+  const t = document.getElementById('desk-topbar-title');
+  if(t) t.textContent = (SCREEN_TITLES[id]||id) + ' — SML Group';
+}
+quizSetStep(0);
+</script>
+</body>
+</html>
