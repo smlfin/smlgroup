@@ -1029,6 +1029,136 @@ body {
 .hscroll { display:flex; gap:12px; overflow-x:auto; padding-bottom:8px; margin-bottom:20px; }
 .hscroll::-webkit-scrollbar { display:none; }
 
+
+/* ══════════════════════════════════════════════════════
+   CALCULATOR — missing styles
+══════════════════════════════════════════════════════ */
+.calc-steps { display:flex; flex-direction:column; gap:0; }
+.calc-group {
+  background:var(--card); border:1px solid var(--border);
+  border-radius:var(--r-sm); padding:20px;
+  margin-bottom:12px; box-shadow:var(--sh);
+}
+.calc-group.hidden { display:none; }
+.calc-group-label {
+  display:flex; align-items:center; gap:10px;
+  font-size:0.8rem; font-weight:700; color:var(--text2);
+  margin-bottom:14px;
+}
+.sel {
+  width:100%; padding:11px 14px; border-radius:var(--r-xs);
+  background:var(--bg2); border:1px solid var(--border2);
+  font-size:0.88rem; color:var(--text); font-family:'DM Sans',sans-serif;
+  outline:none; transition:border-color 0.15s;
+  appearance:none; -webkit-appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%231B5FAB' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat:no-repeat; background-position:right 12px center; padding-right:36px;
+}
+.sel:focus { border-color:var(--sml); background:#fff; }
+.sel:disabled { opacity:0.45; cursor:not-allowed; }
+.tier-options { display:flex; flex-direction:column; gap:8px; }
+.amt-wrap {
+  display:flex; align-items:center;
+  background:var(--bg2); border:1px solid var(--border2);
+  border-radius:var(--r-xs); overflow:hidden;
+  transition:border-color 0.15s;
+}
+.amt-wrap:focus-within { border-color:var(--sml); background:#fff; }
+.amt-prefix {
+  padding:0 12px; font-size:1rem; font-weight:600;
+  color:var(--text3); background:transparent; flex-shrink:0;
+}
+.amt-input {
+  flex:1; padding:11px 8px 11px 0;
+  border:none; background:transparent;
+  font-size:1rem; font-weight:700; color:var(--text);
+  font-family:'Space Grotesk',sans-serif; outline:none;
+}
+.amt-input::placeholder { font-weight:400; font-family:'DM Sans',sans-serif; color:var(--text3); }
+.amt-hint { font-size:0.7rem; color:var(--text3); margin-top:8px; }
+.mt8 { margin-top:8px; }
+.mb16 { margin-bottom:16px; }
+.quick-amts { display:flex; flex-wrap:wrap; gap:6px; margin-top:10px; }
+.qa-btn {
+  padding:5px 12px; border-radius:100px;
+  background:var(--bg3); border:1px solid var(--border2);
+  font-size:0.72rem; font-weight:600; color:var(--text2);
+  cursor:pointer; font-family:'DM Sans',sans-serif; transition:all 0.15s;
+}
+.qa-btn:hover, .qa-btn:active { background:var(--sml); color:#fff; border-color:var(--sml); }
+.period-row {
+  display:flex; align-items:center; gap:10px;
+}
+.period-input {
+  flex:1; padding:11px 14px; border-radius:var(--r-xs);
+  background:var(--bg2); border:1px solid var(--border2);
+  font-size:1rem; font-weight:700; color:var(--text);
+  font-family:'Space Grotesk',sans-serif; outline:none;
+  transition:border-color 0.15s;
+}
+.period-input:focus { border-color:var(--sml); background:#fff; }
+.period-unit {
+  font-size:0.85rem; font-weight:600; color:var(--text3); flex-shrink:0;
+}
+.results-body {
+  background:var(--card);
+  border:1px solid var(--border); border-top:none;
+  border-radius:0 0 var(--r) var(--r);
+  padding:4px 4px 4px;
+}
+
+/* ══════════════════════════════════════════════════════
+   COMPARE — missing styles
+══════════════════════════════════════════════════════ */
+.cmp-amt-box {
+  background:var(--card); border:1px solid var(--border);
+  border-radius:var(--r-sm); padding:20px;
+  margin-bottom:16px; box-shadow:var(--sh);
+}
+.cmp-label {
+  font-size:0.75rem; font-weight:700; color:var(--text2); margin-bottom:10px;
+  display:block;
+}
+.cmp-sel-grid {
+  display:grid; grid-template-columns:1fr;
+  gap:8px; margin-bottom:14px;
+}
+@media(min-width:500px){ .cmp-sel-grid{ grid-template-columns:1fr 1fr; } }
+@media(min-width:900px){ .cmp-sel-grid{ grid-template-columns:1fr 1fr 1fr; } }
+.cmp-sel-card {
+  background:var(--card); border:1.5px solid var(--border2);
+  border-radius:var(--r-sm); padding:14px;
+  cursor:pointer; transition:all 0.15s; box-shadow:var(--sh);
+  display:flex; align-items:center; justify-content:space-between; gap:8px;
+}
+.cmp-sel-card:hover { border-color:var(--sml); }
+.cmp-sel-card.selected { border-color:var(--sml); background:var(--sml-dim); }
+.cmp-sel-co { font-size:0.65rem; color:var(--text3); margin-top:2px; }
+.cmp-sel-name { font-size:0.82rem; font-weight:600; color:var(--text); }
+.cmp-sel-rate { font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:700; color:var(--sml); flex-shrink:0; }
+.cmp-table-wrap {
+  overflow-x:auto; border-radius:var(--r-sm);
+  border:1px solid var(--border); box-shadow:var(--sh);
+}
+
+/* ══════════════════════════════════════════════════════
+   QUIZ RESULT — missing styles
+══════════════════════════════════════════════════════ */
+.quiz-rec-info { flex:1; }
+.quiz-rec-list { display:flex; flex-direction:column; gap:8px; }
+.quiz-rec-head { margin-bottom:10px; }
+.quiz-rec-title {
+  font-family:'Space Grotesk',sans-serif;
+  font-size:0.95rem; font-weight:700; color:#fff; margin-bottom:3px;
+}
+.quiz-rec-sub { font-size:0.7rem; color:rgba(255,255,255,0.72); }
+.quiz-restart-btn {
+  margin-top:8px; padding:10px; border-radius:8px; text-align:center;
+  background:rgba(255,255,255,0.1); border:1.5px solid rgba(255,255,255,0.25);
+  color:rgba(255,255,255,0.85); font-size:0.72rem; font-weight:600;
+  cursor:pointer; font-family:'DM Sans',sans-serif;
+}
+
 </style>
 </head>
 <body>
@@ -1118,7 +1248,7 @@ body {
       <div class="quiz-card" id="quiz-card">
 
         <!-- progress dots -->
-        <div class="quiz-steps">
+        <div class="quiz-steps" id="quiz-steps-bar">
           <div class="quiz-step-dot active" id="qdot-0"></div>
           <div class="quiz-step-dot" id="qdot-1"></div>
           <div class="quiz-step-dot" id="qdot-2"></div>
@@ -1127,7 +1257,7 @@ body {
         </div>
 
         <!-- Q0: Age -->
-        <div class="quiz-header">
+        <div class="quiz-header" id="quiz-header-block">
           <div class="quiz-icon">🔍</div>
           <div>
             <div class="quiz-title">Find Your Best Product</div>
@@ -2383,16 +2513,19 @@ function quizRestart(){
   document.getElementById('quiz-result').classList.remove('show');
   document.getElementById('quiz-form').style.display = 'block';
   document.getElementById('quiz-header') && null;
-  const qh=document.querySelector('.quiz-header');if(qh)qh.style.display='flex';
-  const qs=document.querySelector('.quiz-steps');if(qs)qs.style.display='flex';
+  const qh2=document.getElementById('quiz-header-block');if(qh2)qh2.style.display='flex';
+  const qs2=document.getElementById('quiz-steps-bar');if(qs2)qs2.style.display='flex';
   document.getElementById('quiz-age').value = '';
   quizSetStep(0);
 }
 
 function quizShowResult(){
-  document.getElementById('quiz-form').style.display = 'none';
-  document.querySelector('.quiz-header').style.display = 'none';
-  document.querySelector('.quiz-steps').style.display = 'none';
+  const qf = document.getElementById('quiz-form');
+  if(qf) qf.style.display = 'none';
+  const qh = document.getElementById('quiz-header-block');
+  if(qh) qh.style.display = 'none';
+  const qs = document.getElementById('quiz-steps-bar');
+  if(qs) qs.style.display = 'none';
 
   const recs = quizRecommend(qAns);
   const list = document.getElementById('quiz-rec-list');
