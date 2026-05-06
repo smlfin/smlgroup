@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#F7F5F0">
+<title>SML Group — Trusted Investment Solutions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="shell">
+
+  <!-- ══ DESKTOP SIDEBAR ══ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <div class="sidebar-logo-mark">
+        <div class="sidebar-logo-box">🏦</div>
+        <div>
+          <div class="sidebar-co-name">SML <em>Group</em></div>
+        </div>
+      </div>
+      <div class="sidebar-tagline">Trusted financial solutions<br>across Kerala since 1995</div>
+      <div class="sidebar-reg-badges">
+        <span class="srb blue">RBI Regulated</span>
+        <span class="srb green">MCA Registered</span>
+        <span class="srb olive">Annual Audit</span>
+      </div>
+    </div>
+
+    <div class="sidebar-nav-section">Main</div>
+    <button class="side-item active" id="side-home" onclick="navTo('home')">
+      <span class="si-icon">🏠</span><span class="si-label">Home</span>
+    </button>
+    <button class="side-item" id="side-products" onclick="navTo('products')">
+      <span class="si-icon">📦</span><span class="si-label">Products</span>
+    </button>
+    <button class="side-item" id="side-calculator" onclick="navTo('calculator')">
+      <span class="si-icon">🧮</span><span class="si-label">Calculator</span>
+    </button>
+
+    <div class="sidebar-nav-section" style="margin-top:8px">Insights</div>
+    <button class="side-item" id="side-learn" onclick="navTo('learn')">
+      <span class="si-icon">📚</span><span class="si-label">Learn</span>
+    </button>
+    <button class="side-item" id="side-trust" onclick="navTo('trust')">
+      <span class="si-icon">🛡️</span><span class="si-label">Why Trust Us</span>
+    </button>
+
+    <div class="sidebar-nav-section" style="margin-top:8px">Tools</div>
+    <button class="side-item" id="side-compare" onclick="navTo('compare')">
+      <span class="si-icon">⚖️</span><span class="si-label">Compare Products</span>
+    </button>
+    <button class="side-item" id="side-faq" onclick="navTo('faq')">
+      <span class="si-icon">❓</span><span class="si-label">FAQ</span>
+    </button>
+
+    <div class="sidebar-footer">
+      <strong>Regulatory Note</strong><br>
+      SML Finance & Vanchinad Finance are RBI-registered NBFCs. Sangeeth Nidhi is an MCA-regulated Nidhi Company. Investments are not DICGC insured.
+    </div>
+  </aside>
+
+  <!-- ══ MAIN AREA ══ -->
+  <div class="main-area" id="main-area">
+
+    <!-- Desktop top bar -->
+    <div class="desk-topbar">
+      <div class="desk-topbar-title" id="desk-topbar-title">Home — SML Group</div>
+      <div class="desk-topbar-right">
+        <button class="tb-btn outline" onclick="navTo('calculator')">🧮 Calculator</button>
+        <button class="tb-btn primary" onclick="navTo('products')">View Products →</button>
+      </div>
+    </div>
+
+    <!-- Mobile top bar -->
+    <div class="mob-topbar">
+      <div class="mob-logo">
+        <div class="mob-logo-box">🏦</div>
+        <div class="mob-logo-name">SML <em>Group</em></div>
+      </div>
+      <div class="mob-topbar-right">
+        <div class="mob-icon-btn" onclick="navTo('calculator')">🧮</div>
+        <div class="mob-icon-btn" onclick="navTo('products')">📦</div>
+      </div>
+    </div>
+
+    <!-- Scrollable content -->
+    <div class="content-wrap" id="content-wrap">
+
+
+      <!-- ══ HOME ══ -->
+      <div class="screen active" id="screen-home">
+        <!-- ══ SMART PRODUCT FINDER ══ -->
+      <div class="quiz-card" id="quiz-card">
+
+        <!-- progress dots -->
+        <div class="quiz-steps" id="quiz-steps-bar">
+          <div class="quiz-step-dot active" id="qdot-0"></div>
+          <div class="quiz-step-dot" id="qdot-1"></div>
+          <div class="quiz-step-dot" id="qdot-2"></div>
+          <div class="quiz-step-dot" id="qdot-3"></div>
+          <div class="quiz-step-dot" id="qdot-4"></div>
+        </div>
+
+        <!-- Q0: Age -->
+        <div class="quiz-header" id="quiz-header-block">
+          <div class="quiz-icon">🔍</div>
+          <div>
+            <div class="quiz-title">Find Your Best Product</div>
+            <div class="quiz-sub">5 quick questions · personalised recommendation</div>
+          </div>
+        </div>
+
+        <div id="quiz-form">
+          <div class="quiz-q" id="quiz-question">How old are you?</div>
+
+          <!-- age input (step 0) -->
+          <div id="quiz-age-wrap">
+            <div class="quiz-age-row">
+              <input class="quiz-age-input" id="quiz-age" type="number" min="18" max="90" placeholder="Enter your age" oninput="quizAgeInput()">
+            </div>
+          </div>
+
+          <!-- option buttons (steps 1–4) -->
+          <div class="quiz-opts" id="quiz-opts" style="display:none"></div>
+
+          <div class="quiz-nav">
+            <button class="quiz-back-btn" id="quiz-back" onclick="quizBack()" style="display:none">← Back</button>
+            <button class="quiz-next-btn" id="quiz-next" onclick="quizNext()">Next →</button>
+          </div>
+        </div>
+
+        <!-- Result -->
+        <div class="quiz-result" id="quiz-result">
+          <div class="quiz-rec-head">
+            <div class="quiz-rec-title">✅ Your Best Matches</div>
+            <div class="quiz-rec-sub">Based on your profile — tap a card to calculate returns</div>
+          </div>
+          <div id="quiz-rec-list"></div>
+          <div class="quiz-restart-btn" onclick="quizRestart()">↺ Start Over</div>
+        </div>
+
+      </div>
+
+        <!-- ── HERO ── -->
+      <div class="hero-banner">
+        <div class="hero-tag"><span class="hero-pulse"></span> Trusted Since 1980</div>
+        <div class="hero-title"><em>SML Group</em> of Companies</div>
+        <div class="hero-sub">A family of three regulated financial institutions — serving investors across Kerala for over 45 years with transparency and trust.</div>
+        <div class="hero-stats-row">
+          <div class="hero-stat"><div class="hero-stat-num">45+</div><div class="hero-stat-label">Yrs Legacy</div></div>
+          <div class="hero-stat"><div class="hero-stat-num">3</div><div class="hero-stat-label">Reg. Entities</div></div>
+          <div class="hero-stat"><div class="hero-stat-num">14.5%</div><div class="hero-stat-label">Max Return</div></div>
+          <div class="hero-stat"><div class="hero-stat-num">RBI</div><div class="hero-stat-label">Regulated</div></div>
+        </div>
+      </div>
+
+      <!-- ── TRUST BADGES ── -->
+      <div class="trust-row" style="margin-bottom:20px">
+        <div class="trust-pill"><div class="trust-pill-dot blue"></div>RBI Regulated NBFCs</div>
+        <div class="trust-pill"><div class="trust-pill-dot green"></div>MCA Registered Nidhi</div>
+        <div class="trust-pill"><div class="trust-pill-dot olive"></div>Annual Statutory Audit</div>
+        <div class="trust-pill"><div class="trust-pill-dot blue"></div>No Hidden Charges</div>
+        <div class="trust-pill"><div class="trust-pill-dot green"></div>Kerala HQ</div>
+      </div>
+
+      <!-- ── OUR THREE COMPANIES ── -->
+      <div class="section-title">Our Companies</div>
+
+      <!-- SML Finance -->
+      <div class="reg-card" style="margin-bottom:10px;border-left:3px solid var(--gold);cursor:pointer" onclick="openCompanyDrawer('SML Finance Ltd')">
+        <div class="reg-card-badge sml">🏦</div>
+        <div class="reg-card-info" style="flex:1">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+            <div class="reg-card-name">SML Finance Ltd</div>
+            <div style="font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:800;color:var(--gold)">14.5%</div>
+          </div>
+          <div class="reg-card-reg sml">NBFC · RBI Registered</div>
+          <div class="reg-card-desc">A Non-Banking Financial Company registered with the Reserve Bank of India. Offers Subordinated Deposits, Doubling Scheme, and Non-Convertible Debentures with returns up to 14.5% p.a.</div>
+          <div class="trust-row" style="margin-top:8px">
+            <div class="trust-pill" style="font-size:0.62rem;padding:3px 9px"><div class="trust-pill-dot blue"></div>SD · NCD · Doubling</div>
+            <div class="trust-pill" style="font-size:0.62rem;padding:3px 9px"><div class="trust-pill-dot blue"></div>Min ₹10,000</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vanchinad Finance -->
+      <div class="reg-card" style="margin-bottom:10px;border-left:3px solid var(--green);cursor:pointer" onclick="openCompanyDrawer('Vanchinad Finance (P) Ltd')">
+        <div class="reg-card-badge van">🌿</div>
+        <div class="reg-card-info" style="flex:1">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+            <div class="reg-card-name">Vanchinad Finance (P) Ltd</div>
+            <div style="font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:800;color:var(--green)">14%</div>
+          </div>
+          <div class="reg-card-reg van">NBFC · RBI Registered</div>
+          <div class="reg-card-desc">An RBI-regulated NBFC with a strong track record in Kerala. Offers competitive Subordinated Deposits, Doubling Scheme, and NCDs with flexible premature closure options.</div>
+          <div class="trust-row" style="margin-top:8px">
+            <div class="trust-pill" style="font-size:0.62rem;padding:3px 9px"><div class="trust-pill-dot green"></div>SD · NCD · Doubling</div>
+            <div class="trust-pill" style="font-size:0.62rem;padding:3px 9px"><div class="trust-pill-dot green"></div>Min ₹10,000</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sangeeth Nidhi -->
+      <div class="reg-card" style="margin-bottom:20px;border-left:3px solid var(--purple);cursor:pointer" onclick="openCompanyDrawer('SANGEETH NIDHI')">
+        <div class="reg-card-badge san">🎵</div>
+        <div class="reg-card-info" style="flex:1">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+            <div class="reg-card-name">Sangeeth Nidhi Ltd</div>
+            <div style="font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:800;color:var(--purple)">12.5%</div>
+          </div>
+          <div class="reg-card-reg san">Nidhi Company · MCA Regulated</div>
+          <div class="reg-card-desc">A Nidhi Company under the Companies Act 2013, regulated by the Ministry of Corporate Affairs. A mutual benefit society — member deposits are used to extend loans to members.</div>
+          <div class="trust-row" style="margin-top:8px">
+            <div class="trust-pill" style="font-size:0.62rem;padding:3px 9px"><div class="trust-pill-dot olive"></div>Fixed Deposits</div>
+            <div class="trust-pill" style="font-size:0.62rem;padding:3px 9px"><div class="trust-pill-dot olive"></div>Min ₹10,000</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── REGULATORY SAFEGUARDS ── -->
+      <div class="section-title">Regulatory Safeguards</div>
+      <div class="info-card" style="margin-bottom:20px">
+        <div class="info-card-body">
+          <p>✅ <strong>RBI Oversight (NBFCs):</strong> SML Finance and Vanchinad Finance operate under the RBI's NBFC regulatory framework — including capital adequacy ratios, credit risk norms, and annual statutory audits.</p>
+          <p>✅ <strong>MCA Oversight (Nidhi):</strong> Sangeeth Nidhi is regulated by the Ministry of Corporate Affairs. Nidhi companies must maintain a Net Owned Fund of ₹10 Lakhs minimum and a strict 1:20 NOF-to-deposit ratio.</p>
+          <p>✅ <strong>Annual Audits:</strong> All three entities undergo annual statutory audits by independent chartered accountants.</p>
+          <p>✅ <strong>Transparent Terms:</strong> Interest rates, tenure, and closure terms are disclosed upfront. No hidden charges on any product.</p>
+          <p>⚠️ <strong>Note:</strong> These products are not covered under DICGC deposit insurance. Invest amounts you are comfortable holding for the full tenure.</p>
+        </div>
+      </div>
+
+      <!-- ── TOP RATES ── -->
+      <div class="section-title">Top Rates Today <span class="see-all" onclick="navTo('products')">All Products →</span></div>
+      <div class="rate-cards" style="margin-bottom:20px">
+        <div class="rate-card" onclick="launchCalc('SML Finance Ltd','SD 5.5 Year')">
+          <div class="rate-card-label">SML Finance · SD</div>
+          <div class="rate-card-val gold">14.5%</div>
+          <div class="rate-card-sub">Annual · 5.5 yrs</div>
+          <div class="rate-card-badge badge-gold">Best Annual</div>
+        </div>
+        <div class="rate-card" onclick="launchCalc('Vanchinad Finance (P) Ltd','Non-Convertible Debentures (NCD)')">
+          <div class="rate-card-label">Vanchinad · NCD</div>
+          <div class="rate-card-val" style="color:var(--green)">13.5%</div>
+          <div class="rate-card-sub">Annual · 10 yrs</div>
+          <div class="rate-card-badge" style="background:var(--green-dim);color:var(--green)">Flexible Exit</div>
+        </div>
+        <div class="rate-card" onclick="launchCalc('SML Finance Ltd','Non-Convertible Debentures (NCD)')">
+          <div class="rate-card-label">SML Finance · NCD</div>
+          <div class="rate-card-val gold">13%</div>
+          <div class="rate-card-sub">Monthly · 10 yrs</div>
+          <div class="rate-card-badge badge-gold">Monthly Income</div>
+        </div>
+        <div class="rate-card" onclick="launchCalc('SANGEETH NIDHI','Sangeeth Nidhi Deposits')">
+          <div class="rate-card-label">Sangeeth Nidhi</div>
+          <div class="rate-card-val" style="color:var(--purple)">12.5%</div>
+          <div class="rate-card-sub">Annual · 5 yr premium</div>
+          <div class="rate-card-badge" style="background:var(--purple-dim);color:var(--purple)">Nidhi</div>
+        </div>
+      </div>
+
+      <!-- ── VS BANK ── -->
+      <div class="section-title">Why Not Just a Bank FD? <span class="see-all" onclick="navTo('learn')">Details →</span></div>
+      <div class="bank-compare-grid" style="margin-bottom:10px">
+        <div class="bank-card sbi">
+          <div class="bank-card-logo">🏛️ SBI FD</div>
+          <div class="bank-card-rate">7.0%</div>
+          <div class="bank-card-sub">Best rate · 400 days</div>
+        </div>
+        <div class="bank-card hdfc">
+          <div class="bank-card-logo">🔷 HDFC FD</div>
+          <div class="bank-card-rate">7.4%</div>
+          <div class="bank-card-sub">Best rate · 55 months</div>
+        </div>
+      </div>
+      <div class="vs-strip" style="margin-bottom:20px">
+        <div class="vs-strip-icon">📈</div>
+        <div class="vs-strip-text">
+          <div class="vs-strip-title">SML Group offers up to 14.5%</div>
+          <div class="vs-strip-sub">RBI-regulated · nearly 2× the best bank rate</div>
+        </div>
+        <div class="vs-strip-btn" onclick="navTo('learn')">Compare →</div>
+      </div>
+
+      <!-- ── QUICK ACTIONS ── -->
+      <div class="section-title">Explore</div>
+      <div class="quick-grid" style="margin-bottom:8px">
+        <div class="quick-btn" onclick="navTo('products')">
+          <div class="quick-btn-icon">📦</div>
+          <div class="quick-btn-label">Products</div>
+        </div>
+        <div class="quick-btn" onclick="navTo('calculator')">
+          <div class="quick-btn-icon">🧮</div>
+          <div class="quick-btn-label">Calculate</div>
+        </div>
+        <div class="quick-btn" onclick="navTo('learn')">
+          <div class="quick-btn-icon">📚</div>
+          <div class="quick-btn-label">Learn</div>
+        </div>
+        <div class="quick-btn" onclick="navTo('compare')">
+          <div class="quick-btn-icon">⚖️</div>
+          <div class="quick-btn-label">Compare</div>
+        </div>
+      </div>
+      </div><!-- /screen-home -->
+
+      <!-- ══ PRODUCTS ══ -->
+<!-- ══ PRODUCTS ══ -->
+    <div class="screen" id="screen-products">
+      <button class="back-btn" onclick="navTo('home')">← Back to Home</button>
+      <div class="section-title" style="margin-bottom:12px">All Products</div>
+      <div class="pill-filters" id="pill-filters">
+        <button class="pill active" onclick="filterProds('all',this)">All</button>
+        <button class="pill" onclick="filterProds('SML Finance Ltd',this)">SML Finance</button>
+        <button class="pill" onclick="filterProds('Vanchinad Finance (P) Ltd',this)">Vanchinad</button>
+        <button class="pill" onclick="filterProds('SANGEETH NIDHI',this)">Sangeeth Nidhi</button>
+        <button class="pill" onclick="filterProds('Special Calculators',this)">Special</button>
+      </div>
+      <div class="prod-list" id="prod-list"></div>
+    </div>
+
+    <!-- ══ CALCULATOR ══ -->
+    <div class="screen" id="screen-calculator">
+      <button class="back-btn" onclick="navTo('home')">← Back to Home</button>
+
+
+      <div class="section-title" style="margin-bottom:16px">Returns Calculator</div>
+      <div class="calc-steps">
+        <!-- Step 1 Company -->
+        <div class="calc-group">
+          <div class="calc-group-label"><div class="step-num">1</div> Select Company</div>
+          <select class="sel" id="calc-company" onchange="onCalcCo()">
+            <option value="">— Choose a company —</option>
+            <option>SML Finance Ltd</option>
+            <option>Vanchinad Finance (P) Ltd</option>
+            <option>SANGEETH NIDHI</option>
+            <option>Special Calculators</option>
+          </select>
+        </div>
+        <!-- Step 2 Product -->
+        <div class="calc-group">
+          <div class="calc-group-label"><div class="step-num">2</div> Select Product</div>
+          <select class="sel" id="calc-product" onchange="onCalcProd()" disabled>
+            <option value="">— Choose a product —</option>
+          </select>
+        </div>
+        <!-- Step 3 Tier -->
+        <div class="calc-group hidden" id="tier-group">
+          <div class="calc-group-label"><div class="step-num">3</div> Select Tier / Option</div>
+          <div class="tier-options" id="tier-options"></div>
+        </div>
+        <!-- Step 3 Amount -->
+        <div class="calc-group" id="amt-group">
+          <div class="calc-group-label" id="amt-step-lbl"><div class="step-num">3</div> <span id="amt-step-title">Enter Amount</span></div>
+          <div class="amt-wrap">
+            <span class="amt-prefix">₹</span>
+            <input type="number" class="amt-input" id="calc-amount" placeholder="0" oninput="runCalc()" min="0" inputmode="numeric">
+          </div>
+          <div class="amt-hint" id="amt-hint">Minimum investment: ₹10,000</div>
+          <div class="quick-amts">
+            <button class="qa-btn" onclick="setAmt(10000)">₹10K</button>
+            <button class="qa-btn" onclick="setAmt(50000)">₹50K</button>
+            <button class="qa-btn" onclick="setAmt(100000)">₹1L</button>
+            <button class="qa-btn" onclick="setAmt(500000)">₹5L</button>
+            <button class="qa-btn" onclick="setAmt(1500000)">₹15L</button>
+            <button class="qa-btn" onclick="setAmt(2500000)">₹25L</button>
+          </div>
+        </div>
+        <!-- Period -->
+        <div class="calc-group hidden" id="period-group">
+          <div class="calc-group-label" id="period-step-lbl"><div class="step-num" id="period-step-num">4</div> Investment Period</div>
+          <div class="period-row">
+            <input type="number" class="period-input" id="calc-period" placeholder="e.g. 5" oninput="runCalc()" min="1" inputmode="numeric">
+            <span class="period-unit">Years</span>
+          </div>
+          <div class="amt-hint" id="period-hint"></div>
+        </div>
+      </div>
+      <button class="calc-btn" onclick="runCalc()">✦ Calculate My Returns</button>
+      <div class="results-box" id="results-box">
+        <div class="results-head">
+          <div class="results-head-title">Your Returns</div>
+          <div class="results-head-sub" id="results-sub-text">—</div>
+        </div>
+        <div class="results-body" id="results-body"></div>
+      </div>
+    </div>
+
+
+    <!-- ══ LEARN ══ -->
+    <div class="screen" id="screen-learn">
+      <button class="back-btn" onclick="navTo('home')">← Back to Home</button>
+      <div class="section-title" style="margin-bottom:16px">Learn &amp; Compare</div>
+      <div style="display:flex;gap:8px;margin-bottom:16px">
+        <button onclick="navTo('compare')" style="flex:1;padding:10px;border-radius:12px;background:var(--gold);color:#fff;border:none;font-family:'DM Sans',sans-serif;font-size:0.72rem;font-weight:700;cursor:pointer">⚖️ Compare Products</button>
+        <button onclick="navTo('faq')" style="flex:1;padding:10px;border-radius:12px;background:var(--card);color:var(--text);border:1px solid var(--border2);font-family:'DM Sans',sans-serif;font-size:0.72rem;font-weight:700;cursor:pointer">❓ FAQs</button>
+      </div>
+
+      <!-- Bank rate comparison table -->
+      <div class="info-card" style="margin-bottom:12px">
+        <div class="info-card-head">
+          <div class="info-card-icon blue">🏦</div>
+          <div>
+            <div class="info-card-title">Bank FD vs SML Group</div>
+            <span class="info-card-badge blue">Rate Comparison</span>
+          </div>
+        </div>
+        <div class="bank-compare-grid" style="margin-bottom:10px">
+          <div class="bank-card sbi">
+            <div class="bank-card-logo">🏛️ SBI FD</div>
+            <div class="bank-card-rate">7.0%</div>
+            <div class="bank-card-sub">Best rate · 400 days</div>
+          </div>
+          <div class="bank-card hdfc">
+            <div class="bank-card-logo">🔷 HDFC FD</div>
+            <div class="bank-card-rate">7.4%</div>
+            <div class="bank-card-sub">Best rate · 55 months</div>
+          </div>
+        </div>
+        <div class="info-card-body">
+          <p><strong>SBI</strong> offers up to 7.0% on Fixed Deposits (400-day tenure as of 2025). Senior citizens get 0.5% extra. Interest is compounded quarterly.</p>
+          <p><strong>HDFC Bank</strong> offers up to 7.4% on select tenures around 55 months. Senior citizens get an additional 0.25–0.50%.</p>
+        </div>
+        <div class="info-highlight-row">
+          <div class="info-highlight-item">
+            <div class="info-highlight-num">7.4%</div>
+            <div class="info-highlight-lbl">Best Bank Rate</div>
+          </div>
+          <div class="info-highlight-item">
+            <div class="info-highlight-num" style="color:var(--green)">14.5%</div>
+            <div class="info-highlight-lbl">SML Max Rate</div>
+          </div>
+          <div class="info-highlight-item">
+            <div class="info-highlight-num" style="color:var(--purple)">+7.1%</div>
+            <div class="info-highlight-lbl">Extra Return</div>
+          </div>
+        </div>
+        <div class="info-card-body" style="margin-top:8px">
+          <p>On ₹5 Lakhs over 5.5 years, an SML Finance SD at 14.5% p.a. annual payout yields <strong>₹3,97,500</strong> in interest — vs approx ₹2,03,000 from a bank FD at 7.4%. That's nearly <strong>double the income</strong>.</p>
+        </div>
+      </div>
+
+      <!-- RD Explained -->
+      <div class="info-card" style="margin-bottom:12px">
+        <div class="info-card-head">
+          <div class="info-card-icon green">📅</div>
+          <div>
+            <div class="info-card-title">Recurring Deposit (RD)</div>
+            <span class="info-card-badge green">Monthly Saving</span>
+          </div>
+        </div>
+        <div class="info-card-body">
+          <p>A <strong>Recurring Deposit</strong> lets you invest a fixed amount every month and earn compounding interest. It's perfect for salaried individuals who want to build wealth gradually without locking in a large sum upfront.</p>
+          <p><strong>How it works:</strong> Each monthly instalment earns interest from the date of deposit until maturity.</p>
+          <p><strong>SML Group RD offers 10–12% p.a.</strong> depending on tenure (1 yr: 10%, 2 yrs: 11%, 3–4 yrs: 12%), compounded monthly — significantly higher than bank RDs (SBI: 6.5–7.0%, HDFC: 7.0–7.5%).</p>
+          <p>For example, depositing <strong>₹5,000/month for 3 years</strong> at 12% p.a. yields a maturity value of approx <strong>₹2,15,000</strong> — vs ₹1,98,000 from a bank RD at 7%.</p>
+        </div>
+        <div class="trust-row">
+          <div class="trust-pill"><div class="trust-pill-dot green"></div>Min ₹1,000/month</div>
+          <div class="trust-pill"><div class="trust-pill-dot green"></div>1–5 Year tenure</div>
+          <div class="trust-pill"><div class="trust-pill-dot green"></div>10–12% p.a.</div>
+        </div>
+        <div style="margin-top:12px">
+          <button class="vs-strip-btn" style="background:var(--gold);border-color:var(--gold);color:#fff;padding:9px 18px;font-size:0.75rem" onclick="navTo('calculator');launchCalc('Special Calculators','Recurring Deposit (RD)')">🧮 Try RD Calculator</button>
+        </div>
+      </div>
+
+      <!-- Debentures / NCD Explained -->
+      <div class="info-card" style="margin-bottom:12px">
+        <div class="info-card-head">
+          <div class="info-card-icon olive">📜</div>
+          <div>
+            <div class="info-card-title">Non-Convertible Debentures (NCD)</div>
+            <span class="info-card-badge olive">Debt Instrument</span>
+          </div>
+        </div>
+        <div class="info-card-body">
+          <p>A <strong>Non-Convertible Debenture (NCD)</strong> is a debt security issued by a company to raise funds from the public. Unlike convertible debentures, NCDs <em>cannot</em> be converted into equity shares — you receive fixed interest and your principal back at maturity.</p>
+          <p><strong>Why NCDs?</strong> They are governed by SEBI/RBI regulations, backed by the company's assets, and offer higher returns than bank FDs. They are particularly suitable for investors seeking long-term, predictable income.</p>
+          <p><strong>SML Finance NCD:</strong> 10-year tenure · 12.5–13% monthly payout · Min ₹2 Lakhs. Premature closure allowed after 1 year with reducing penalty (nil after 3 years).</p>
+          <p><strong>Vanchinad Finance NCD:</strong> 10-year tenure · 12.5–13.5% · Min ₹5 Lakhs. Same flexible exit structure.<strong>Vanchinad Finance NCDs are offered only during specific time periods.:</strong> </p>
+          <p>Interest income is taxable under "Income from Other Sources" as per your slab. TDS may apply.</p>
+        </div>
+        <div class="trust-row">
+          <div class="trust-pill"><div class="trust-pill-dot blue"></div>RBI Regulated</div>
+          <div class="trust-pill"><div class="trust-pill-dot blue"></div>10-year tenure</div>
+          <div class="trust-pill"><div class="trust-pill-dot blue"></div>Exit after 1 yr</div>
+          <div class="trust-pill"><div class="trust-pill-dot olive"></div>Up to 13.5%</div>
+        </div>
+      </div>
+
+      <!-- Subordinated Deposit -->
+      <div class="info-card" style="margin-bottom:12px">
+        <div class="info-card-head">
+          <div class="info-card-icon blue">💰</div>
+          <div>
+            <div class="info-card-title">Subordinated Deposit (SD)</div>
+            <span class="info-card-badge blue">Fixed Deposit</span>
+          </div>
+        </div>
+        <div class="info-card-body">
+          <p>A <strong>Subordinated Deposit</strong> is a fixed-term instrument offered by RBI-registered NBFCs. You deposit a lump sum and earn fixed interest paid monthly or annually over 5.5 years.</p>
+          <p>It is called "subordinated" because, in a hypothetical liquidation scenario, these depositors are repaid after secured creditors — in exchange for which they earn a <strong>significantly higher interest rate</strong> than bank FDs.</p>
+          <p>No premature closure is permitted. At maturity, your full principal plus accumulated interest (annual payout) is returned. The monthly payout option provides a steady income stream throughout the tenure.</p>
+        </div>
+        <div class="trust-row">
+          <div class="trust-pill"><div class="trust-pill-dot blue"></div>5.5 Year tenure</div>
+          <div class="trust-pill"><div class="trust-pill-dot blue"></div>Up to 14.5% p.a.</div>
+          <div class="trust-pill"><div class="trust-pill-dot blue"></div>Monthly/Annual payout</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ══ TRUST / CREDIBILITY ══ -->
+    <div class="screen" id="screen-trust">
+      <button class="back-btn" onclick="navTo('home')">← Back to Home</button>
+      <div class="cred-hero">
+        <div class="cred-hero-title">🛡️ Why Trust SML Group?</div>
+        <div class="cred-hero-sub">Regulated, audited, and serving investors across Kerala since 1980</div>
+      </div>
+
+      <div class="milestone-row">
+        <div class="milestone-item"><div class="milestone-num">45+</div><div class="milestone-lbl">Years in Business</div></div>
+        <div class="milestone-item"><div class="milestone-num">3</div><div class="milestone-lbl">Regulated Entities</div></div>
+        <div class="milestone-item"><div class="milestone-num">₹450Cr+</div><div class="milestone-lbl">Assets Under Mgmt</div></div>
+      </div>
+
+      <div class="section-title" style="margin-bottom:12px">Our Regulated Companies</div>
+      <div class="reg-cards">
+        <div class="reg-card">
+          <div class="reg-card-badge sml">🏦</div>
+          <div class="reg-card-info">
+            <div class="reg-card-name">SML Finance Ltd</div>
+            <div class="reg-card-reg sml">NBFC · RBI Registered</div>
+            <div class="reg-card-desc">A Non-Banking Financial Company registered with the Reserve Bank of India. Subject to RBI's prudential norms, capital adequacy standards, and annual audit requirements. Offers SD, Doubling Scheme, and NCD products.</div>
+          </div>
+        </div>
+        <div class="reg-card">
+          <div class="reg-card-badge van">🌿</div>
+          <div class="reg-card-info">
+            <div class="reg-card-name">Vanchinad Finance (P) Ltd</div>
+            <div class="reg-card-reg van">NBFC · RBI Registered</div>
+            <div class="reg-card-desc">An RBI-regulated NBFC with a strong track record in Kerala. Offers competitive SD, Doubling, and NCD products with flexible exit options. All operations are governed by RBI's NBFC master directions.</div>
+          </div>
+        </div>
+        <div class="reg-card">
+          <div class="reg-card-badge san">🎵</div>
+          <div class="reg-card-info">
+            <div class="reg-card-name">Sangeeth Nidhi Ltd</div>
+            <div class="reg-card-reg san">Nidhi Company · MCA Regulated</div>
+            <div class="reg-card-desc">A Nidhi Company incorporated under Section 406 of the Companies Act 2013, regulated by the Ministry of Corporate Affairs (MCA). Nidhi companies are mutual benefit societies — member deposits fund member loans.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-title" style="margin-bottom:12px">Regulatory Safeguards</div>
+      <div class="info-card" style="margin-bottom:12px">
+        <div class="info-card-body">
+          <p>✅ <strong>RBI Oversight (NBFCs):</strong> SML Finance and Vanchinad Finance operate under the RBI's NBFC regulatory framework — including mandatory capital adequacy ratios, credit risk norms, and annual statutory audits.</p>
+          <p>✅ <strong>MCA Oversight (Nidhi):</strong> Sangeeth Nidhi is regulated by the Ministry of Corporate Affairs. Nidhi companies must maintain a Net Owned Fund of ₹10 Lakhs minimum and a 1:20 NOF-to-deposit ratio.</p>
+          <p>✅ <strong>Annual Audits:</strong> All three entities are subject to annual statutory audits by independent chartered accountants.</p>
+          <p>✅ <strong>Transparent Operations:</strong> Interest rates, tenure, and terms are disclosed upfront. No hidden charges on any product.</p>
+          <p>⚠️ <strong>Important:</strong> These products are not covered under DICGC deposit insurance (which covers bank deposits up to ₹5 Lakhs). Investors should diversify and invest amounts they are comfortable holding for the full tenure.</p>
+        </div>
+      </div>
+
+      <div class="section-title" style="margin-bottom:12px">Key Indicators</div>
+      <div class="trust-row" style="margin-bottom:24px">
+        <div class="trust-pill"><div class="trust-pill-dot blue"></div>Est. 1980</div>
+        <div class="trust-pill"><div class="trust-pill-dot blue"></div>RBI Compliant</div>
+        <div class="trust-pill"><div class="trust-pill-dot green"></div>MCA Compliant</div>
+        <div class="trust-pill"><div class="trust-pill-dot green"></div>Annual Audit</div>
+        <div class="trust-pill"><div class="trust-pill-dot olive"></div>No Hidden Fees</div>
+        <div class="trust-pill"><div class="trust-pill-dot olive"></div>Kerala Based</div>
+      </div>
+    </div>
+
+    <!-- ══ COMPARE ══ -->
+    <div class="screen" id="screen-compare">
+      <button class="back-btn" onclick="navTo('learn')">← Back to Learn</button>
+      <div class="section-title" style="margin-bottom:14px">Compare Products</div>
+      <div class="cmp-amt-box">
+        <div class="cmp-label">Comparison Amount</div>
+        <div class="amt-wrap">
+          <span class="amt-prefix">₹</span>
+          <input type="number" class="amt-input" id="cmp-amount" placeholder="e.g. 100000" oninput="runCompare()" inputmode="numeric">
+        </div>
+        <div class="amt-hint mt8">Select up to 3 products below, then enter amount</div>
+      </div>
+      <div class="cmp-label mb16">Select Products (max 3)</div>
+      <div class="cmp-sel-grid" id="cmp-grid"></div>
+      <button class="cmp-run-btn" onclick="runCompare()">Compare Selected →</button>
+      <div class="cmp-table-wrap" id="cmp-table-wrap">
+        <table class="cmp-table" id="cmp-table"></table>
+      </div>
+    </div>
+
+    <!-- ══ FAQ ══ -->
+    <div class="screen" id="screen-faq">
+      <button class="back-btn" onclick="navTo('learn')">← Back to Learn</button>
+      <div class="section-title" style="margin-bottom:16px">FAQ</div>
+      <div class="faq-items" id="faq-items"></div>
+    </div>
+
+    </div><!-- /content-wrap -->
+
+    <!-- Mobile bottom nav -->
+    <nav class="mob-nav">
+      <button class="mob-nav-item active" id="mnav-home" onclick="navTo('home')">
+        <span class="mob-nav-icon">🏠</span>
+        <span class="mob-nav-label">Home</span>
+      </button>
+      <button class="mob-nav-item" id="mnav-products" onclick="navTo('products')">
+        <span class="mob-nav-icon">📦</span>
+        <span class="mob-nav-label">Products</span>
+      </button>
+      <button class="mob-nav-item" id="mnav-calculator" onclick="navTo('calculator')">
+        <span class="mob-nav-icon">🧮</span>
+        <span class="mob-nav-label">Calculate</span>
+      </button>
+      <button class="mob-nav-item" id="mnav-compare" onclick="navTo('compare')">
+        <span class="mob-nav-icon">⚖️</span>
+        <span class="mob-nav-label">Compare</span>
+      </button>
+      <button class="mob-nav-item" id="mnav-more" onclick="toggleMobMore()">
+        <span class="mob-nav-icon">☰</span>
+        <span class="mob-nav-label">More</span>
+      </button>
+    </nav>
+
+  </div><!-- /main-area -->
+
+</div><!-- /shell -->
+
+<!-- Drawer -->
+<div class="drawer-overlay" id="drawer-overlay" onclick="closeDrawer(event)">
+  <div class="drawer-content">
+    <div class="drawer-handle"></div>
+    <div class="drawer-company-tag" id="drawer-tag"></div>
+    <div class="drawer-title" id="drawer-title"></div>
+    <div id="drawer-body"></div>
+  </div>
+</div>
+
+<!-- Mobile More Menu -->
+<div id="mob-more-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:400;backdrop-filter:blur(4px)" onclick="toggleMobMore()">
+  <div onclick="event.stopPropagation()" style="position:absolute;bottom:0;left:0;right:0;background:#fff;border-radius:20px 20px 0 0;padding:20px 16px 36px;max-width:600px;margin:0 auto">
+    <div style="width:36px;height:4px;background:#e5e7eb;border-radius:2px;margin:0 auto 20px"></div>
+    <div style="font-family:'Space Grotesk',sans-serif;font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#9ca3af;margin-bottom:12px">More Options</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+      <button onclick="toggleMobMore();navTo('learn')" style="display:flex;align-items:center;gap:10px;padding:14px;border-radius:12px;background:#f7f5f1;border:1px solid #e5e7eb;cursor:pointer;font-family:'DM Sans',sans-serif;width:100%">
+        <span style="font-size:1.2rem">📚</span><div style="text-align:left"><div style="font-size:0.8rem;font-weight:600;color:#111827">Learn</div><div style="font-size:0.65rem;color:#9ca3af">RD, NCD, Debentures</div></div>
+      </button>
+      <button onclick="toggleMobMore();navTo('trust')" style="display:flex;align-items:center;gap:10px;padding:14px;border-radius:12px;background:#f7f5f1;border:1px solid #e5e7eb;cursor:pointer;font-family:'DM Sans',sans-serif;width:100%">
+        <span style="font-size:1.2rem">🛡️</span><div style="text-align:left"><div style="font-size:0.8rem;font-weight:600;color:#111827">Why Trust Us</div><div style="font-size:0.65rem;color:#9ca3af">Regulations & Audits</div></div>
+      </button>
+      <button onclick="toggleMobMore();navTo('compare')" style="display:flex;align-items:center;gap:10px;padding:14px;border-radius:12px;background:#f7f5f1;border:1px solid #e5e7eb;cursor:pointer;font-family:'DM Sans',sans-serif;width:100%">
+        <span style="font-size:1.2rem">⚖️</span><div style="text-align:left"><div style="font-size:0.8rem;font-weight:600;color:#111827">Compare</div><div style="font-size:0.65rem;color:#9ca3af">Side-by-side view</div></div>
+      </button>
+      <button onclick="toggleMobMore();navTo('faq')" style="display:flex;align-items:center;gap:10px;padding:14px;border-radius:12px;background:#f7f5f1;border:1px solid #e5e7eb;cursor:pointer;font-family:'DM Sans',sans-serif;width:100%">
+        <span style="font-size:1.2rem">❓</span><div style="text-align:left"><div style="font-size:0.8rem;font-weight:600;color:#111827">FAQ</div><div style="font-size:0.65rem;color:#9ca3af">Common questions</div></div>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
